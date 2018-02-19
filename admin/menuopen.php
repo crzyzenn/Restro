@@ -22,10 +22,24 @@
 		<!-- Display all foods available -->
 		<?php 
 			// Search
-			if(isset($_POST['search'])){
-				$query = "MATCH (n:FOOD) WHERE n.name CONTAINS '".$_POST['search']."' return n.name as name, n.description as description, n.price as price"; 
-				$results = $client->run($query);
+			if(isset($_POST['search'])){	
+								
 				echo "<script>$('#search').val('".$_POST['search']."')</script>"; 
+
+				$query1 = "MATCH (n:FOOD) return max(n.numImages) as maxImg"; 
+				$results = $client->run($query1);
+
+				foreach ($results->getRecords() as $result) {
+					$query = "MATCH (n:FOOD) WHERE n.name CONTAINS '".$_POST['search']."' return n.name as name, n.description as description, n.price as price, n.numImages as num,"; 
+
+					for ($i=1; $i <= $result->value('maxImg'); $i++) { 
+						if($i == $result->value('maxImg'))
+							$query .= "n.image".$i; 	
+						else
+							$query .= "n.image".$i.",";
+					}										
+				}				
+				$res = $client->run($query); 
 			}
 
 			else{
