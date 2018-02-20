@@ -1,3 +1,6 @@
+<?php 
+	require 'connect.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +23,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#"><img src="Images/pizzahut-logo.png" class = 'home_img'></a>
+					<a class="navbar-brand" href="index.php"><img src="Images/pizzahut-logo.png" class = 'home_img'></a>
 				</div>
 		
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,71 +56,3 @@
 			</div>
 		</nav>		
 	</header>
-
-
-	<!-- Form table number -->
-	<div class="container-fluid">
-
-		<?php 
-
-			require 'vendor/autoload.php'; 	
-
-			// Establish connection to the database
-			require_once 'vendor/autoload.php'; 
-			use GraphAware\Neo4j\Client\ClientBuilder;
-			$client = ClientBuilder::create()
-				    ->addConnection('bolt', 'bolt://neo4j:root@localhost:7687')
-				    ->build();
-			// Front end check table id
-			if (isset($_POST['table_id'])) {
-				 $query = "MATCH (n:TABLE) WHERE n.id = ".$_POST['table_id']." RETURN n.id";
-				 $results = $client->run($query); 
-				 if(empty($results->getRecords())){
-				 	?>
-				 	<div class="panel panel-danger">
-				 		<div class="panel-heading">
-				 			<span class = 'glyphicon glyphicon-remove-sign'></span> Invalid Table ID.
-				 		</div>				 		
-				 	</div>
-				 	<?php 
-				 }
-				 else{
-				 	echo "<script>window.location='menu.php';</script>";
-				 }
-				 
-			}
-
-		?>
-
-
-
-		<form action="index.php" method="POST" role="form">
-			
-			<table class="table">
-			
-				<tbody>
-					<tr>
-						<td><br>Table ID</td>
-						<td>
-							<br>
-							<div class="input-group-sm">			
-								<input type="name" name = 'table_id' class="form-control" id="" required="required" placeholder="Table Number">
-							</div>	
-						</td>
-					</tr>
-					<tr>
-						<td><br><button type="submit" class="btn btn-primary btn-sm"><span class = 'glyphicon glyphicon-ok-circle'></span> GO</button></td>
-					</tr>
-				</tbody>
-			</table>
-			
-		</form>
-	</div>
-
-	<!-- End of form -->
-	<hr>
-	<footer>
-	
-	</footer>
-</body>
-</html>

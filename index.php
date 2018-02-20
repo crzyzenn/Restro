@@ -1,46 +1,68 @@
 <?php 
-	require 'vendor/autoload.php'; 	
+	require 'essentials.php'; 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Restaurant</title>
-	<link rel = 'stylesheet' media="screen" href = 'bs/css/bootstrap.css'>
-	<script type="text/javascript" src = 'bs/js/bootstrap.js'></script>
-	<script type="text/javascript" src = 'bs/js/bootstrap.min.js'></script>
-	<script type="text/javascript" src = 'bs/js/npm.js'></script>
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-</head>
-<body>		
-	<header>
-		<div id = 'bar'>
-			<p class = 'lead'>Pizza Hut</p>
-		</div>
-		
-		
-	</header>
 
-	
 
-	<div id = 'left-container'>		
-		<ul class="myNav">
-			<a class = 'myLink active' href="#"><li class = 'active'>Dashboard</li></a>	
-			<a class = 'myLink' href="menu.php"><li>Menu Management</li></a>	
-			<a class = 'myLink' href="#"><li>Invoice Management</li></a>	
-			<a class = 'myLink' href="#"><li>Waitstaff Management</li></a>	
-			<a class = 'myLink' href="#"><li>Kitchen Management</li></a>								
-		</ul>				
+	<!-- Form table number -->
+	<div class="container-fluid">
+
+		<?php 
+
+			
+			// Front end check table id
+			if (isset($_POST['table_id'])) {
+				 $query = "MATCH (n:TABLE) WHERE n.id = ".$_POST['table_id']." RETURN n.id";
+				 $results = $client->run($query); 
+				 if(empty($results->getRecords())){
+				 	?>
+				 	<div class="panel panel-danger">
+				 		<div class="panel-heading">
+				 			<span class = 'glyphicon glyphicon-remove-sign'></span> Invalid Table ID.
+				 		</div>			 					 		
+				 	</div>
+				 	<?php 
+				 }
+				 else{	
+				 	echo "<script>window.location='menu.php';</script>";
+				 }
+				 
+			}
+
+		?>
+
+
+
+		<form action="index.php" method="POST" role="form">
+			
+			<table class="table">
+			
+				<tbody>
+					<tr>
+						<td><br>Table ID</td>
+						<td>
+							<br>
+							<div class="input-group-sm">			
+								<input type="name" name = 'table_id' class="form-control" id="" required="required" placeholder="Table Number">
+							</div>	
+							<br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<br>
+							<button type="submit" class="btn btn-primary btn-sm"><span class = 'glyphicon glyphicon-ok-circle'></span> GO</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</form>
 	</div>
-	<div id = 'right-container'>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</div>		
+
+	<!-- End of form -->
+	<hr>
 	<footer>
-		
+	
 	</footer>
 </body>
 </html>

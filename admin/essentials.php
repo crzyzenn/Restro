@@ -65,21 +65,36 @@
 			<?php 
 				if(isset($_GET['a'])){
 					echo "<a class = 'myLink' href='index.php?a'><li class = 'active'>Dashboard</li></a>"; 	
-					echo "<a class = 'myLink' href='menuopen.php?b'><li>Menu Management</li></a>"; 	
+					echo "<a class = 'myLink' href='menuopen.php?b'><li>Menu Management</li></a>";
+					echo "<a class = 'myLink' href='tableopen.php?c'><li>Table Management</li></a>"; 	
 					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";							
 				}
+
 				else if(isset($_GET['b'])){
 					echo "<a class = 'myLink' href='index.php?a'><li>Dashboard</li></a>"; 	
 					echo "<a class = 'myLink' href='menuopen.php?b'><li class = 'active'>Menu Management</li></a>"; 	
+					echo "<a class = 'myLink' href='tableopen.php?c'><li>Table Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";			
 				}
+
+				else if(isset($_GET['c'])){
+					echo "<a class = 'myLink' href='index.php?a'><li>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='menuopen.php?b'><li>Menu Management</li></a>"; 	
+					echo "<a class = 'myLink' href='tableopen.php?c'><li class = 'active'>Table Management</li></a>"; 
+					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
+					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
+					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";			
+				}
+
 				else{
 					echo "<a class = 'myLink' href='index.php?a'><li class = 'active'>Dashboard</li></a>"; 	
 					echo "<a class = 'myLink' href='menuopen.php?b'><li>Menu Management</li></a>"; 
+					echo "<a class = 'myLink' href='tableopen.php?c'><li>Table Management</li></a>"; 
+
 					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";			
