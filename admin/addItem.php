@@ -9,7 +9,7 @@
 		// When form data is sent
 		if(isset($_POST['add'])){			
 
-			$query = "CREATE (n:FOOD{name:'".$_POST['name']."', description:'".$_POST['description']."', price:".$_POST['price']."})";
+			$query = 'CREATE (n:FOOD{name:"'.$_POST['name'].'", description:"'.$_POST['description'].'", price:'.$_POST["price"].', category:"'.$_POST['category'].'"})';
 			$result = $client->run($query); 
 
 
@@ -84,6 +84,21 @@
 						<td>Item Description</td>
 						<td>
 							<textarea name="description" id="desc" class="form-control" rows="10" required="required"></textarea>					
+						</td>					
+						<td></td>	
+					</tr>
+					<tr>
+						<td>Category</td>
+						<td>
+							<select name="category" id="input" class="form-control">
+								<?php 
+									$categories = $client->run("MATCH (n:CATEGORY) return n.name as category"); 
+									foreach ($categories->getRecords() as $category) {
+										echo '<option value="'.$category->value('category').'">'.$category->value('category').'</option>';		
+									}
+
+								?>								
+							</select>					
 						</td>					
 						<td></td>	
 					</tr>

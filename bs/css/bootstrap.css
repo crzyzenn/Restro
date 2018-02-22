@@ -190,7 +190,48 @@ li{
 }
 
 
+.food_images{
+  width: 100%;
+  background-color: #00000000;
+  margin:  0 auto;
+  padding-top: 1em;
+}
 
+.food_images img{
+  width: 100%;
+  padding: 1.5em;
+}
+
+
+.modal-body h3, .modal-body p, .modal-body h4{
+  color:#484847;
+
+}
+
+
+/*Scrollable table*/
+
+.scroll{
+  overflow-y: scroll;
+}
+
+
+.menuHr{
+    width: 91%;
+    margin: 0 auto;
+    margin-bottom: 2em;
+}
+
+
+.container.custom.pre-scrollable {
+    box-shadow: inset 0px 0px 20px 0px #ddd;
+    z-index:1;
+}
+
+
+.padding{
+  padding-left: 0.6em; 
+}
 
 
 /****************/
@@ -1774,8 +1815,8 @@ pre code {
   border-radius: 0;
 }
 .pre-scrollable {
-  max-height: 340px;
-  overflow-y: scroll;
+  max-height: 36em;
+  overflow-y: auto;
 }
 .container {
   width: 93%;
@@ -1803,6 +1844,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 30px;
 }
 .row {
   margin-right: -15px;
