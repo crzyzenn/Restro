@@ -31,6 +31,10 @@ if (typeof jQuery === 'undefined') {
   // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
   // ============================================================
 
+  
+
+
+
   function transitionEnd() {
     var el = document.createElement('bootstrap')
 
@@ -2361,6 +2365,51 @@ if (typeof jQuery === 'undefined') {
   // ==============
 
   $(window).on('load', function () {
+    // $('.cart').notify("Window loaded", {autoHide: false, position: 'left middle' , className: 'success'}); 
+    // Custom script
+
+    $('#orderTable').on('click', '#order', function() {
+        var itemName = $(this).closest('tr').contents().filter('td:first-child').contents().filter('#item').text();
+        var itemPrice = $(this).closest('tr').contents().filter('td:nth-child(2)').text();
+        var price = parseInt(itemPrice.substr(1)); 
+
+        var confirmStatus = prompt("Quantity", "1");
+
+        // Check whether input is float
+        var decimal= /[A-Z|a-z|\W]/;  
+        if(confirmStatus.match(decimal)) { 
+          alert('Quantity should be a number');           
+        }
+
+        else {          
+          // Add them to the modal
+          var elem = "<tr><td>" + itemName + "</td><td>" + confirmStatus + "</td><td>$" + (price * confirmStatus) + "</td><td><a class = 'link' id = 'removeOrder'><span class = 'glyphicon glyphicon-minus-sign'></span></a></td></tr>";
+          $('#cart').append(elem);
+
+                  
+          $.notify(
+            "Item has been added", {position:"top left", className: 'success', autoHideDelay:2000}
+          );   
+        }
+    });
+
+    $('#cart').on('click', '#removeOrder', function(event) {
+      event.preventDefault();      
+      /* Act on the event */
+      var status = confirm("Your order : " + $(this).closest('tr').contents().filter('td:first-child').text() + " will be removed. Are you sure?"); 
+      if (status) {
+        $('.modal-body').notify("Order has been removed", 
+          {classname: 'success', position: 'top right' , autoHideDelay: 1000}
+        ); 
+        $(this).closest('tr').remove(); 
+      }
+    });
+
+
+
+    // End of Custom script
+
+
     $('[data-spy="affix"]').each(function () {
       var $spy = $(this)
       var data = $spy.data()

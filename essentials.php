@@ -8,8 +8,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Restaurant</title>
 	<link rel = 'stylesheet' media="screen" href = 'bs/css/bootstrap.css'>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script defer src="bs/js/fontawesome-all.js"></script>
 	<script type="text/javascript" src = 'bs/js/bootstrap.js'></script>		
+	<script type="text/javascript" src = 'bs/js/notify.js'></script>	
 </head>
 <body>
 	<header>
@@ -23,7 +26,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.php"><img src="Images/pizzahut-logo.png" class = 'home_img'></a>
+					<a class="link" href="index.php"><img src="Images/home.jpg" class = 'home_img'></a>
 				</div>
 		
 				<!-- Collect the nav links, forms, and other content for toggling -->

@@ -145,8 +145,9 @@ li{
 /* Front end */
 
 .home_img{
-  width: 45%;
-  margin: -16px;
+  width: 50%;
+  margin: 1em;
+  padding-top: 2em;
 }
 
 
@@ -156,7 +157,7 @@ li{
       position: relative;
       bottom: 4em;
       width: 45%;
-      margin: -16px;
+      margin: 0em;
   }
 }
 
@@ -164,9 +165,9 @@ li{
 @media screen and (min-width: 540px) and (max-width: 780px) {
     .home_img{
     position: relative;
-    bottom: 4em;
+    bottom: 2em;
     width: 30%;
-    margin: -16px;
+    margin: 0em;
   }
 }
 
@@ -198,8 +199,9 @@ li{
 }
 
 .food_images img{
-  width: 100%;
-  padding: 1.5em;
+  width: 70%;
+  padding-bottom: 1.5em;
+  padding-left: 0.5em;
 }
 
 
@@ -217,15 +219,17 @@ li{
 
 
 .menuHr{
-    width: 91%;
+    width: 95%;
     margin: 0 auto;
     margin-bottom: 2em;
 }
 
 
 .container.custom.pre-scrollable {
-    box-shadow: inset 0px 0px 20px 0px #ddd;
+    /* box-shadow: inset 0px 0px 20px 0px #ffffff; */
     z-index:1;
+    background-color: #080808;
+    color: #ffffff;
 }
 
 
@@ -233,6 +237,114 @@ li{
   padding-left: 0.6em; 
 }
 
+
+
+/* Menu bar*/
+
+.menu-bar{
+  width: 100%;
+  height: 5em;
+  background-color: #ffffff;
+}
+
+.menu-bar .cart{
+  float: right;
+  padding-top: 1em; 
+  padding-right: 1em; 
+  cursor: pointer;
+  position: relative;
+  color: #525156;   
+}
+
+.menu-bar .cart:hover{
+  color: black; 
+}
+
+
+/*Header logo*/
+
+
+.navbar-header .link{
+  position: relative;
+  top: 0em;
+  left: 1em;
+}
+
+
+/* For Mobile */
+@media screen and (max-width: 540px) {
+   .navbar-header .link{
+      position: relative;
+      top: 4em;
+      left: 1em;
+  }
+}
+
+/* For Tablets */
+@media screen and (min-width: 540px) and (max-width: 780px) {
+  .navbar-header .link{
+    position: relative;
+    top: 4.2em;
+    left: 1em;
+  }
+}
+
+
+
+td a{
+  color: gray; 
+  font-size: 15px;    
+}
+
+
+
+/*End of header logo*/
+
+
+
+/* Menu table */
+
+
+.menu .btn{
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 100%;
+}
+
+.menu .btn:hover{
+    background-color: #484847; 
+    color: white;
+
+
+}
+
+/* End of menu table */
+
+/* Footer */
+
+footer{
+    background-color: #080808;
+    color: white;
+    padding: 1em;
+}
+
+
+footer ul{
+  margin: 0 auto;
+  padding: 1em;
+  list-style-type:  none;
+}
+
+footer li{
+  padding: 1em;
+  display: inline-block;
+}
+
+footer .container-fluid{
+  text-align: center;
+  padding-top: 3em;
+}
 
 /****************/
 
@@ -2559,8 +2671,8 @@ th {
   background-color: #f9f9f9;
 }
 .table-hover > tbody > tr:hover {
-  background-color: #363635;
-  color: #eee;
+  background-color: #ffffff;
+  color: #484847;
   transition: background-color 0.3s;
 }
 table col[class*="col-"] {
@@ -4405,7 +4517,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  min-height: 23em;
+  min-height: 12em;
   margin-bottom: 2em;
   border: 1px solid transparent;
 }
@@ -4413,9 +4525,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media screen and (max-width: 768px) {
   .navbar{
      position: relative;
-      min-height: 12em;
-      margin-bottom: 2em;
-      border: 1px solid transparent;
+     min-height: 10em;
+     margin-bottom: 2em;
+     border: 1px solid transparent;
   }
 }
 
@@ -4456,7 +4568,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 @media screen and (max-width: 768px){
   .navbar li:first-child{
-    margin-top:2em;
+    margin-top: 1em;
   }
 }
 
@@ -4501,7 +4613,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .container-fluid > .navbar-header,
 .container > .navbar-collapse,
 .container-fluid > .navbar-collapse {
-  margin-right: -15px;
   margin-left: -15px;
 }
 @media (min-width: 768px) {
@@ -4568,9 +4679,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   float: right;
   padding: 0.8em;
-  margin-top: 8px;
-  margin-right: 15px;
-  margin-bottom: 8px;
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-bottom: 0em;
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
@@ -4761,15 +4872,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left !important;
   }
   .navbar-right {
-    float: right !important;
-    margin-right: -15px;
+    float: right;
   }
   .navbar-right ~ .navbar-right {
     margin-right: 0;
   }
 }
 .navbar-default {
-  background-color: #6c5b7d00;
+  background-color: #010101;
   box-shadow: 0px -8px 20px 0px;
 }
 .navbar-default .navbar-brand {
@@ -4805,11 +4915,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: #350000;
+  border-color: #8a6d3b;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #420301;
+  background-color: #f5f5f5;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #8a6d3b;
@@ -6173,7 +6283,7 @@ button.close {
 }
 .modal-open .modal {
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 .modal-dialog {
   position: relative;
@@ -6253,7 +6363,7 @@ button.close {
   }
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0);
   }
   .modal-sm {
     width: 300px;

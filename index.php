@@ -62,7 +62,22 @@
 	<!-- End of form -->
 	<hr>
 	<footer>
-	
-	</footer>
+	<div class="container-fluid">
+		
+			<h4>Follow us at:</h4>
+			<ul>
+				<li><i style = 'color:white' class = 'fab fa-facebook fa-2x'></i></li>				
+				<li><i style = 'color:white' class = 'fab fa-instagram fa-2x'></i></li>
+				<li><i style = 'color:white' class = 'fab fa-twitter fa-2x'></i></li>
+				<li><i style = 'color:white' class = 'fab fa-pinterest fa-2x'></i></li>					
+			</ul>
+
+			<p>&copy All Rights Reserved</p>
+			
+		
+		
+	</div>
+
+</footer>
 </body>
 </html>
