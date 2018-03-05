@@ -3,6 +3,7 @@
 	ini_set('display_errors', 0); 
 	$query = "MATCH (n:FOOD) RETURN n"; 
 	$results = $client->run($query); 
+	session_start();
 
 ?>
 
@@ -23,26 +24,33 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title"><span class = 'glyphicon glyphicon-shopping-cart'></span></h4>
 					</div>
-					<div class="modal-body">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>Item</th>
-									<th>Quantity</th>	
-									<th>Price</th>									
-									<th></th>
-								</tr>
-							</thead>
-							<tbody id = 'cart'>
+					<form id = 'cartForm' action = 'confirmOrder.php' method = 'GET'>
+						<div class="modal-body">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th>Quantity</th>	
+										<th>Price</th>									
+										<th></th>
+									</tr>
+								</thead>
+
 								
+									<tbody id = 'cart'>
+										
+											
+									</tbody>							
 								
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Confirm</button>
-					</div>
+							</table>
+							<hr>
+							Total (VAT incl.): $<span id = 'total_price'></span>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+							<button type="button" id = 'confirm' class="btn btn-sm btn-primary">Confirm</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -138,7 +146,7 @@
 								// 		<input type="checkbox" name = "check'.$a++.'" value = "'.$result->get('n')->value('name').'">				
 								// 	</label>
 								// </div>'; 
-								echo "<a id = 'order' class = 'btn btn-sm btn-default'><span class = 'glyphicon glyphicon-plus'></span></a>";
+								echo "<a id = 'order' class = 'btn btn-sm btn-default'><span class = 'fas fa-cart-arrow-down'></span></a>";
 							echo "</td>";
 						echo "</tr>";	
 						$id++;

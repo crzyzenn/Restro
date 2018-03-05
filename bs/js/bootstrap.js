@@ -2367,12 +2367,12 @@ if (typeof jQuery === 'undefined') {
   $(window).on('load', function () {
     // $('.cart').notify("Window loaded", {autoHide: false, position: 'left middle' , className: 'success'}); 
     // Custom script
-
+    var total = 0; 
     $('#orderTable').on('click', '#order', function() {
+        // Get values
         var itemName = $(this).closest('tr').contents().filter('td:first-child').contents().filter('#item').text();
         var itemPrice = $(this).closest('tr').contents().filter('td:nth-child(2)').text();
-        var price = parseInt(itemPrice.substr(1)); 
-
+        var price = parseInt(itemPrice.substr(1));      
         var confirmStatus = prompt("Quantity", "1");
 
         // Check whether input is float
@@ -2383,13 +2383,22 @@ if (typeof jQuery === 'undefined') {
 
         else {          
           // Add them to the modal
-          var elem = "<tr><td>" + itemName + "</td><td>" + confirmStatus + "</td><td>$" + (price * confirmStatus) + "</td><td><a class = 'link' id = 'removeOrder'><span class = 'glyphicon glyphicon-minus-sign'></span></a></td></tr>";
-          $('#cart').append(elem);
+          var elem = "<tr><td>" + itemName + "</td><td>" + confirmStatus + "</td><td>$" + (price * confirmStatus) + "</td><td><a class = 'link' id = 'removeOrder'><span class = 'glyphicon glyphicon-minus-sign'></span></a></td><input type = 'hidden' name = 'price[]' value = '" + (price * confirmStatus) + "'><input type = 'hidden' name = 'quantity[]' value = '" + confirmStatus + "'><input type = 'hidden' name = 'itemname[]' value = '" + itemName + "'></tr>";
+          $('#cart').append(elem);  
 
-                  
+
+          // Display notification that the item has been added
           $.notify(
             "Item has been added", {position:"top left", className: 'success', autoHideDelay:2000}
           );   
+
+
+          // Calculate total price
+          total = total + (price * confirmStatus); 
+          $('#total_price').text(total); // Display the total price on the table          
+ 
+
+  
         }
     });
 
@@ -2401,14 +2410,29 @@ if (typeof jQuery === 'undefined') {
         $('.modal-body').notify("Order has been removed", 
           {classname: 'success', position: 'top right' , autoHideDelay: 1000}
         ); 
+        var cut = parseInt($(this).closest('tr').contents().filter('td:nth-child(3)').text().substr(1));
+        total = total - cut; 
+        $('#total_price').text(total); // Display the total price on the table
+
+        
         $(this).closest('tr').remove(); 
+
+
       }
     });
 
 
+    $('#confirm').on('click', function(event) {
+       var response = confirm('Once you confirm your order, you cannot make any changes to it. Confirm?');
+       if (response){          
+          $('#cartForm').submit();
+       }
+    });
+
+
+
 
     // End of Custom script
-
 
     $('[data-spy="affix"]').each(function () {
       var $spy = $(this)
