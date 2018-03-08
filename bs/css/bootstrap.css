@@ -150,9 +150,15 @@ li{
   padding-top: 2em;
 }
 
+.menuImage{
+  width: 20%; 
+}
 
 /* For Mobile */
 @media screen and (max-width: 540px) {
+    .menuImage{
+      width: 100%; 
+    }
     .home_img {
       position: relative;
       bottom: 4em;
@@ -163,6 +169,9 @@ li{
 
 /* For Tablets */
 @media screen and (min-width: 540px) and (max-width: 780px) {
+    .menuImage{
+      width: 75%; 
+    }
     .home_img{
     position: relative;
     bottom: 2em;
@@ -193,15 +202,14 @@ li{
 
 .food_images{
   width: 100%;
+  text-align:  center;
   background-color: #00000000;
-  margin:  0 auto;
   padding-top: 1em;
 }
 
 .food_images img{
-  width: 70%;
+  width: 100%;
   padding-bottom: 1.5em;
-  padding-left: 0.5em;
 }
 
 

@@ -2365,6 +2365,7 @@ if (typeof jQuery === 'undefined') {
   // ==============
 
   $(window).on('load', function () {
+    $("[data-toggle=tooltip]").tooltip();
     // $('.cart').notify("Window loaded", {autoHide: false, position: 'left middle' , className: 'success'}); 
     // Custom script
     var total = 0; 

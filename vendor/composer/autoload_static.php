@@ -245,6 +245,7 @@ class ComposerStaticInitee634d021890d3c5cc6096c2cdcd4439
         'ExtendSelector' => __DIR__ . '/..' . '/phing/phing/classes/phing/types/selectors/ExtendSelector.php',
         'ExtendedFileStream' => __DIR__ . '/..' . '/phing/phing/classes/phing/util/ExtendedFileStream.php',
         'ExtractBaseTask' => __DIR__ . '/..' . '/phing/phing/classes/phing/tasks/ext/ExtractBaseTask.php',
+        'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',
         'FailTask' => __DIR__ . '/..' . '/phing/phing/classes/phing/tasks/system/FailTask.php',
         'FileHashTask' => __DIR__ . '/..' . '/phing/phing/classes/phing/tasks/ext/FileHashTask.php',
         'FileInputStream' => __DIR__ . '/..' . '/phing/phing/classes/phing/system/io/FileInputStream.php',

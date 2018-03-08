@@ -111,6 +111,7 @@ return array(
     'ExtendSelector' => $vendorDir . '/phing/phing/classes/phing/types/selectors/ExtendSelector.php',
     'ExtendedFileStream' => $vendorDir . '/phing/phing/classes/phing/util/ExtendedFileStream.php',
     'ExtractBaseTask' => $vendorDir . '/phing/phing/classes/phing/tasks/ext/ExtractBaseTask.php',
+    'FPDF' => $vendorDir . '/setasign/fpdf/fpdf.php',
     'FailTask' => $vendorDir . '/phing/phing/classes/phing/tasks/system/FailTask.php',
     'FileHashTask' => $vendorDir . '/phing/phing/classes/phing/tasks/ext/FileHashTask.php',
     'FileInputStream' => $vendorDir . '/phing/phing/classes/phing/system/io/FileInputStream.php',

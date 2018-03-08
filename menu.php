@@ -1,22 +1,41 @@
 <?php 
+	session_start();
 	require 'essentials.php'; 
 	ini_set('display_errors', 0); 
 	$query = "MATCH (n:FOOD) RETURN n"; 
 	$results = $client->run($query); 
-	session_start();
-
+	$_SESSION['tick'] = 0; 
 ?>
 
 <div class="container-fluid">
+	
+
+	<!-- LOG OUT -->
+	<?php 
+		if (isset($_GET['logout'])) {
+			session_destroy();
+			echo "<script>window.location = 'index.php';</script>";
+		}
+		else if(isset($_GET['confirm'])){
+			echo "<script>var a = confirm('Are you sure?'); if(a) window.location = 'menu.php?logout'</script>";
+		}
+
+	?>
+	<!-- END OF LOG OUT -->
+
+
 	<div class = 'menu-bar'>
 		<h3 class = 'padding pull-left'>Menu</h3>
 
-	
-
 		<!-- Cart modal -->
+		<h4 class = 'cart' data-toggle="modal" href='#modal-id'>
+			<span data-toggle = 'tooltip' data-placement = 'bottom' title="Cart" class = 'glyphicon glyphicon-shopping-cart'></span></h4>
 
+		<!-- Logout -->
+		<h4 name = "logout" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Logout' onclick = "window.location = 'menu.php?confirm'" class="cart link"><span class = 'glyphicon glyphicon-log-out'></span></h4>
+		</form>
+		
 
-		<h4 class = 'cart' data-toggle="modal" href='#modal-id'><span class = 'glyphicon glyphicon-shopping-cart'></span></h4>
 		<div class="modal fade" id="modal-id">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -88,15 +107,16 @@
 							// echo "<td><br>".$a++."</td>";
 							echo "<td>";
 				
-							echo '<h4 id = "item" style = "cursor:pointer;" data-toggle="modal" href="#modal-id'.$id.'">';
+							echo '<h5 id = "item" style = "cursor:pointer;" data-toggle="modal" href="#modal-id'.$id.'">';
 				
 								echo $result->get('n')->value('name');
 
-							echo "</h4>";
+							echo "</h5>";
 							
 							// End of modal head
 
-							echo "<p id = 'description' style = 'cursor:pointer;' data-toggle = 'modal' href = '#modal-id".$id."'>".$result->get('n')->value('description')."</p>";
+							// echo "<p id = 'description' style = 'cursor:pointer;' data-toggle = 'modal' href = '#modal-id".$id."'>".$result->get('n')->value('description')."</p>";
+							echo "<img data-toggle = 'modal' href = '#modal-id".$id."' class = 'menuImage' src = 'Images/".$result->get('n')->value('image1')."'>";
 
 
 							// Modal body
@@ -141,27 +161,13 @@
 							
 							// Checkbox
 							echo "<td>";
-								// echo '<div class="form-group">
-								// 	<label>
-								// 		<input type="checkbox" name = "check'.$a++.'" value = "'.$result->get('n')->value('name').'">				
-								// 	</label>
-								// </div>'; 
+
 								echo "<a id = 'order' class = 'btn btn-sm btn-default'><span class = 'fas fa-cart-arrow-down'></span></a>";
 							echo "</td>";
 						echo "</tr>";	
 						$id++;
 					}				
 				?>					
-
-				<!-- <tr>					
-					<td>
-						<br>
-							<button type="submit" class="btn btn-sm btn-default"><span class = 'glyphicon glyphicon-shopping-cart'></span> Add</button>
-						<br>
-					</td>
-					<td></td>
-					<td></td>
-				</tr> -->
 			</tbody>
 		</table>
 	</div>

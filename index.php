@@ -1,31 +1,42 @@
 <?php 
-	require 'essentials.php'; 
+	session_start(); 
+	require "essentials.php"; 	
 ?>
-
 
 	<!-- Form table number -->
 	<div class="container-fluid">
 
 		<?php 
-
-			
 			// Front end check table id
 			if (isset($_POST['table_id'])) {
-				 $query = "MATCH (n:TABLE) WHERE n.id = ".$_POST['table_id']." RETURN n.id";
-				 $results = $client->run($query); 
-				 if(empty($results->getRecords())){
-				 	?>
-				 	<div class="panel panel-danger">
-				 		<div class="panel-heading">
+				$query = "MATCH (n:TABLE) WHERE n.id = ".$_POST['table_id']." RETURN n.id";
+				$results = $client->run($query); 
+
+				// If table id not valid
+				if(empty($results->getRecords())){
+					?>
+					<div class="panel panel-danger">
+						<div class="panel-heading">
 				 			<span class = 'glyphicon glyphicon-remove-sign'></span> Invalid Table ID.
 				 		</div>			 					 		
 				 	</div>
-				 	<?php 
-				 }
-				 else{	
-				 	echo "<script>window.location='menu.php';</script>";
-				 }
-				 
+					<?php 
+				}
+
+				// If table id is OK
+				else{						
+					if(isset($_SESSION["user".$_POST['table_id']])){
+	 					echo "<span class = 'fas fa-sync-alt'></span> Continuing from last session.";
+	 					echo "<script>window.location='menu.php';</script>";
+	 				}
+	 				else{	 					
+	 					echo "<span class = 'fas fa-sync-alt'></span> Starting new session.";
+	 					$_SESSION["user".$_POST['table_id']] = "true"; 
+	 					$_SESSION["orders"] = array(); 
+	 					$_SESSION['tick'] = 0;
+ 						echo "<script>window.location='menu.php';</script>";
+	 				} 						 		
+				}	 	
 			}
 
 		?>
@@ -54,8 +65,7 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>
-			
+			</table>			
 		</form>
 	</div>
 

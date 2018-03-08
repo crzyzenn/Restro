@@ -1,8 +1,26 @@
 <?php 
+	session_start();
 	require 'essentials.php'; 
 	ini_set('display_errors', 0); 
 	$query = "MATCH (n:FOOD) RETURN n"; 
 	$results = $client->run($query); 
+
+	// Append to orders
+	// Data stored in 2D array
+	 
+	if ($_SESSION['tick'] == 0) {
+		if(!is_null($_GET['itemname'])){
+			$s = sizeof($_GET['itemname']);
+			for ($i=0; $i < $s ; $i++) { 
+				array_push($_SESSION['orders'], [$_GET['itemname'][$i], $_GET['quantity'][$i], $_GET['price'][$i]]); 	
+			}			
+			
+			// var_dump($_SESSION['orders']); 	
+			$_SESSION['tick'] = 1; 
+		}
+	}	
+	// var_dump($_SESSION['orders']); 
+
 
 ?>
 
@@ -30,26 +48,30 @@
 		</thead>
 		<tbody>
 			<?php 
-				$total = 0; 
-				$size = sizeof($_GET['itemname']); //Size of array
-				for ($i=0; $i < $size; $i++) { 						
+				$total = 0; 				
+				$size = sizeof($_SESSION['orders']);
+			
+				for ($i=0; $i < $size; $i++) {
 					echo "<tr>";
-						echo "<td>".$_GET['itemname'][$i]."</td>";
-						echo "<td>".$_GET['quantity'][$i]."</td>";
-						echo "<td> $".$_GET['price'][$i]."</td>";
-					echo "</tr>";
-					$total = $total + $_GET['price'][$i]; 
+						
+						for ($j=0; $j < 3; $j++) { 
+							echo "<td>".$_SESSION['orders'][$i][$j]."</td>";
+						} 	
+
+						$total = $total + $_SESSION['orders'][$i][2];
+					echo "</tr>";							 
 				}
+
 				echo "<tr>";
 				echo "<td>Total</td>";
 				echo "<td></td>";
 				echo "<td> $".$total."</td>";
 				echo "</tr>";
-				
 			?>
+
 		</tbody>
 	</table>
-	<button type="button" onclick = 'window.print();' class="btn btn-default btn-lg"><i class = 'fas fa-save'></i></button>	
+	<a class="btn btn-default" href="invoicepdf.php" target="_blank" role="button"><i class = 'fas fa-save'></i> Save PDF</a>		
 
 </div>
 
