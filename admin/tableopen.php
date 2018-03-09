@@ -3,21 +3,7 @@
 ?>
 
 	<div id = 'right-container'>
-		<a href="addTable.php?c" data-toggle = 'tooltip' data-placement = 'right' title = 'Add Item'><span class = 'glyphicon glyphicon-plus-sign glyph'></span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		<a href="addTable.php?c" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Add Table'><span class = 'glyphicon glyphicon-plus-sign glyph'></span></a>
 
 
 		<form class="form-inline pull-right" method = "POST" id = 'form' action = "menuopen.php?b&search">
@@ -72,8 +58,5 @@
 
 
 	</div>
-	<footer>
-		
-	</footer>
 </body>
 </html>

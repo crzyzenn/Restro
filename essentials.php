@@ -12,7 +12,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script defer src="bs/js/fontawesome-all.js"></script>
 	<script type="text/javascript" src = 'bs/js/bootstrap.js'></script>		
-	<script type="text/javascript" src = 'bs/js/notify.js'></script>	
+	<script type="text/javascript" src = 'bs/js/notify.js'></script>		
 </head>
 <body>
 	<header>

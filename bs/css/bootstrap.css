@@ -18,38 +18,41 @@
 
 #bar{
     width: 100%;
-    background-color: #ffffff;
-    color: rgb(123, 123, 123);
+    background-color: #000000;
+    color: rgb(254, 254, 254);
     margin-top: -20px;
     padding: 2em 0em 1em 0em;
-    box-shadow: 1px -8px 20px 3px;
+    box-shadow: 0px 1px 20px 3px #484847;
+    margin-bottom: 3em;
 }
 
 #left-container{
   width: 20%;
-  background-color: #325c7f;
+  background-color: #484847;
   float: left;
-  margin-right: 1.5%;
-  margin-left: 0%;
-  padding: 3em;
-  margin-top: 0%;
-  border-radius: 0px;
-  border-bottom-right-radius: 3%;
+  padding: 2em;
+  margin-left: 1em;
+  margin-right: 2em;
+  border-radius: 20px;
+  /* box-shadow: 0px 0px 20px 0px #484847; */
 }
 
 
 
 #right-container{
-  width: 77%;
-  background-color: #2b2b2b;
-  float:  left;
-  margin-top: 0%;
-  margin-bottom: 4%;
-  padding: 2%;
-  border-radius: 5px;
-  color: #ccc;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
+  width: 70%;
+  background-color: #484847;
+  float: left;
+  margin-bottom: 2em;
+  padding: 4%;
+  color: #ffffff;
+  /* box-shadow: 0px 0px 20px 5px #484847; */
+  border-radius: 20px;
+}
+
+#right-container .container-fluid{
+  height:30em;
+  overflow-y: scroll;
 }
 
 
@@ -91,10 +94,10 @@ li{
 .myNav li:hover{
   position: relative;
   cursor: pointer;
-  background-color:#29363b17; 
-  left: 10px; 
-  transition: left 0.1s; 
-  color:white;  
+  background-color: #363635;
+  left: 10px;
+  transition: left 0.1s;
+  color:white;
 }
 
 .white{
@@ -102,7 +105,10 @@ li{
 }
 
 .gray{
-  color:#2b2b2b;
+  color: #ffffff;
+  position:  relative;
+  top: 1px;
+  padding: 0.2em;
 }
 
 .glyph{
@@ -130,15 +136,21 @@ li{
 }
 
 #logStatus{
-  font-size: 14px;
-  padding: 1.3em;
-  float: right;
+  font-size: 1.2em;
+  padding: 0.8em;
+  font-weight: 700;
   border-radius: 30px;
-  background-color: #f5f5f5;
+  background-color: #000000;
+  text-align:  center;
+  float: right;
 }
 
 .images{
-  display: block;
+}
+
+.images img{
+  width: 50%;
+  padding: 1em;
 }
 
 
@@ -339,9 +351,10 @@ footer{
 
 
 footer ul{
-  margin: 0 auto;
-  padding: 1em;
-  list-style-type:  none;
+    margin: 0 auto;
+    padding: 1em;
+    width: 25%;
+    list-style-type: none;
 }
 
 footer li{
@@ -1459,7 +1472,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #919092;
   text-decoration: underline;
 }
 a:focus {
@@ -6115,12 +6128,12 @@ button.list-group-item-danger.active:focus {
   border-bottom-color: #337ab7;
 }
 .panel-success {
-  border-color: #d6e9c6;
+  border-color: #3a773a;
 }
 .panel-success > .panel-heading {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+  color: #eee;
+  background-color: #3c763d;
+  border-color: #3a773a;
 }
 .panel-success > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #d6e9c6;

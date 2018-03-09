@@ -53,7 +53,7 @@
 						<td>
 							<br>
 							<div class="input-group-sm">			
-								<input type="name" name = 'table_id' class="form-control" id="" required="required" placeholder="Table Number">
+								<input type="name" name = 'table_id' class="form-control" id="" required="required" placeholder="Enter Table Number">
 							</div>	
 							<br>
 						</td>

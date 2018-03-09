@@ -4,7 +4,7 @@
 
 	<div id = 'right-container'>
 
-		<a href="addItem.php?b" data-toggle = 'tooltip' data-placement = 'right' title = 'Add Item'><span class = 'glyphicon glyphicon-plus-sign glyph'></span></a>
+		<a href="addItem.php?b" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Add Item'><span style = 'color:white' class = 'glyphicon glyphicon-plus-sign glyph'></span></a>
 
 		<form class="form-inline pull-right" method = "POST" id = 'form' action = "menuopen.php?b&search">
 			<div class="form-group">
@@ -61,48 +61,48 @@
 
 		?>
 
-		<table class="table table-responsive">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Price</th>
-					<th>Images</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php 
-					
-					foreach ($res->getRecords() as $result) {
-						echo "<tr >";
-							echo "<td style = 'width:20%; padding: 2em 1em 2em 1em;'>".$result->value('name');
-							echo "</td>";	
-							echo "<td style = 'text-align: justify; padding: 2em 3em 2em 1em;'>".$result->value('description')."</td>";	
-							echo "<td>$ ".$result->value('price')."</td>";
-							echo "<td>";
-								echo "<div class = 'images'>";
-								// VIEW IMAGES
-								for ($i=1; $i <= $result->value('num'); $i++) { 
-									echo "<img src = '".$result->value('n.image'.$i)."' style = 'width:40%;'>";
-								}
-								echo "</div>";
 
-							echo "</td>";
-						echo "</tr>";
+		<!-- Menu table -->
+		<div class="container-fluid">
+			
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Images</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
 						
-					}
-					
+						foreach ($res->getRecords() as $result) {
+							echo "<tr >";
+								echo "<td style = 'width:20%; padding: 2em 1em 2em 1em;'>".$result->value('name');
+								echo "</td>";	
+								echo "<td style = 'padding: 2em 3em 2em 1em;'>".$result->value('description')."</td>";	
+								echo "<td>$ ".$result->value('price')."</td>";
+								echo "<td>";
+									echo "<div class = 'images'>";
+									// VIEW IMAGES
+									for ($i=1; $i <= $result->value('num'); $i++) { 
+										echo "<img src = '".$result->value('n.image'.$i)."'>";
+									}
+									echo "</div>";
 
-					
-				?>
+								echo "</td>";
+							echo "</tr>";
+							
+						}
+						
 
-				
-			</tbody>
-		</table>
-
+						
+					?>
+				</tbody>
+			</table>
+		</div>
+		<!-- End of menu table -->
 	</div>		
-	<footer>
-		
-	</footer>
 </body>
 </html>

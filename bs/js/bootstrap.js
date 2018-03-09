@@ -2367,8 +2367,12 @@ if (typeof jQuery === 'undefined') {
   $(window).on('load', function () {
     $("[data-toggle=tooltip]").tooltip();
     // $('.cart').notify("Window loaded", {autoHide: false, position: 'left middle' , className: 'success'}); 
-    // Custom script
-    var total = 0; 
+    // Custom script    
+
+    // Calculate total for existing orders
+    gTotal(); 
+
+    // When order button is clicked
     $('#orderTable').on('click', '#order', function() {
         // Get values
         var itemName = $(this).closest('tr').contents().filter('td:first-child').contents().filter('#item').text();
@@ -2384,7 +2388,7 @@ if (typeof jQuery === 'undefined') {
 
         else {          
           // Add them to the modal
-          var elem = "<tr><td>" + itemName + "</td><td>" + confirmStatus + "</td><td>$" + (price * confirmStatus) + "</td><td><a class = 'link' id = 'removeOrder'><span class = 'glyphicon glyphicon-minus-sign'></span></a></td><input type = 'hidden' name = 'price[]' value = '" + (price * confirmStatus) + "'><input type = 'hidden' name = 'quantity[]' value = '" + confirmStatus + "'><input type = 'hidden' name = 'itemname[]' value = '" + itemName + "'></tr>";
+          var elem = "<tr><td>" + itemName + "</td><td>" + confirmStatus + "</td><td>" + (price * confirmStatus) + "</td><td><a class = 'link'  id = 'removeOrder'><span style = 'cursor:pointer;' class = 'glyphicon glyphicon-minus-sign'></span></a></td><input type = 'hidden' name = 'price[]' value = '" + (price * confirmStatus) + "'><input type = 'hidden' name = 'quantity[]' value = '" + confirmStatus + "'><input type = 'hidden' name = 'itemname[]' value = '" + itemName + "'></tr>";
           $('#cart').append(elem);  
 
 
@@ -2393,15 +2397,23 @@ if (typeof jQuery === 'undefined') {
             "Item has been added", {position:"top left", className: 'success', autoHideDelay:2000}
           );   
 
-
           // Calculate total price
-          total = total + (price * confirmStatus); 
-          $('#total_price').text(total); // Display the total price on the table          
- 
-
-  
+          gTotal(); 
         }
     });
+
+    function gTotal(){
+      var total = 0;
+      $('#cart').contents().filter('tr').each(function(index) {
+        var thePrice = parseInt($(this).contents().filter('td:nth-child(3)').text()); 
+        if (!isNaN(thePrice)) {
+          total += thePrice;
+        }
+
+        // Display the total price on the table
+        $('#total_price').text(total); 
+      });
+    }
 
     $('#cart').on('click', '#removeOrder', function(event) {
       event.preventDefault();      
@@ -2410,14 +2422,12 @@ if (typeof jQuery === 'undefined') {
       if (status) {
         $('.modal-body').notify("Order has been removed", 
           {classname: 'success', position: 'top right' , autoHideDelay: 1000}
-        ); 
-        var cut = parseInt($(this).closest('tr').contents().filter('td:nth-child(3)').text().substr(1));
-        total = total - cut; 
-        $('#total_price').text(total); // Display the total price on the table
+        );         
 
-        
         $(this).closest('tr').remove(); 
 
+        // Calculate the new total
+        gTotal(); 
 
       }
     });

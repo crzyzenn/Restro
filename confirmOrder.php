@@ -7,7 +7,6 @@
 
 	// Append to orders
 	// Data stored in 2D array
-	 
 	if ($_SESSION['tick'] == 0) {
 		if(!is_null($_GET['itemname'])){
 			$s = sizeof($_GET['itemname']);
@@ -27,9 +26,9 @@
 <div class="container-fluid">
 	<div class = 'menu-bar'>
 		<!-- <h3 class = 'padding pull-left'><span class = 'glyphicon glyphicon-saved'></span> Your order has been confirmed!</h3> -->
-		<div class="panel panel-default">
+		<div class="panel panel-success">
 			<div class = 'panel-heading'>
-				<span class = 'fas fa-check-circle'></span> Your order has been confirmed!
+				<span class = 'fas fa-check-circle'></span> Your orders have been placed!
 			</div>
 		</div>
 	</div>
@@ -58,7 +57,7 @@
 							echo "<td>".$_SESSION['orders'][$i][$j]."</td>";
 						} 	
 
-						$total = $total + $_SESSION['orders'][$i][2];
+						$total = $total + $_SESSION['orders'][$i][2];						
 					echo "</tr>";							 
 				}
 
@@ -71,7 +70,8 @@
 
 		</tbody>
 	</table>
-	<a class="btn btn-default" href="invoicepdf.php" target="_blank" role="button"><i class = 'fas fa-save'></i> Save PDF</a>		
+	<a class="btn btn-default" href="invoicepdf.php" target="_blank" data-toggle= "tooltip" data-placement = "bottom" title = "Get a pdf version of the invoice"  role="button"><i class = 'fas fa-save'></i></a>
+	<a class="btn btn-default" href="menu.php" data-toggle= "tooltip" data-placement = "bottom" title = "Browse Menu" role="button"><i class = 'glyphicon glyphicon-backward'></i></a>		
 
 </div>
 

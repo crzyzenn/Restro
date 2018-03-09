@@ -50,15 +50,41 @@
 									<tr>
 										<th>Item</th>
 										<th>Quantity</th>	
-										<th>Price</th>									
+										<th>Price ($)</th>									
 										<th></th>
 									</tr>
 								</thead>
 
 								
 									<tbody id = 'cart'>
-										
+										<tr>
+											<td><h3>Existing orders</h3></td>
+											<td><h3></h3></td>
+											<td><h3></h3></td>
+										</tr>										
+										<!-- View placed orders -->
+										<?php 											
+											$size = sizeof($_SESSION['orders']);
 											
+											for ($i=0; $i < $size; $i++) {		
+												echo "<tr>";
+													
+													for ($j=0; $j < 3; $j++) { 
+														echo "<td>".$_SESSION['orders'][$i][$j]."</td>";
+													} 					
+												echo "</tr>";							 
+											}
+										?>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td><h3>Current orders</h3></td>
+											<td><h3></h3></td>
+											<td><h3></h3></td>
+										</tr>
 									</tbody>							
 								
 							</table>

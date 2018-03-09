@@ -48,12 +48,12 @@
 <body>		
 	<header>
 		<div id = 'bar'>
-			<img src="../Images/pizzahut-logo.png" style = 'width:10%;'>						
+			<img src="../Images/home.jpg" style = 'width:10%;'>						
 			
 
 			<div id = 'logStatus'>
 				Admin
-				<a href = "#" class = 'gray' data-toggle = 'tooltip' data-placement = 'bottom' title = 'Log-out'><span class = 'glyphicon glyphicon-remove-circle'></span></a>
+				<a href = "#" class = 'gray' data-toggle = 'tooltip' data-placement = 'bottom' title = 'Log-out'><span class = 'glyphicon glyphicon-log-out'></span></a>
 			</div>			
 			
 
