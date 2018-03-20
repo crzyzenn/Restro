@@ -9,7 +9,7 @@
 	<title>Restaurant</title>
 	<link rel = 'stylesheet' media="screen" href = 'bs/css/bootstrap.css'>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="bs/js/jquery.js"></script>
 	<script defer src="bs/js/fontawesome-all.js"></script>
 	<script type="text/javascript" src = 'bs/js/bootstrap.js'></script>		
 	<script type="text/javascript" src = 'bs/js/notify.js'></script>		

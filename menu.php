@@ -29,7 +29,7 @@
 
 		<!-- Cart modal -->
 		<h4 class = 'cart' data-toggle="modal" href='#modal-id'>
-			<span data-toggle = 'tooltip' data-placement = 'bottom' title="Cart" class = 'glyphicon glyphicon-shopping-cart'></span></h4>
+			<span class = 'glyphicon glyphicon-shopping-cart'></span></h4>
 
 		<!-- Logout -->
 		<h4 name = "logout" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Logout' onclick = "window.location = 'menu.php?confirm'" class="cart link"><span class = 'glyphicon glyphicon-log-out'></span></h4>
@@ -100,9 +100,22 @@
 			</div>
 		</div>
 
-		<!-- End of cart modal -->
+		<!-- End of cart modal -->		
+		<form action="" method="POST" style = 'margin-top:10px;' class = 'padding pull-left' role="form">			
+		
+			<div class="form-group">
+				<div class="input-group col-xs-4">
+					<input type="text" class="form-control" placeholder="Search" id = 'search' name = 'search'>
+					<div class="input-group-addon">					
+						<a onclick = "$('#form').submit();" class='link'><span class = 'glyphicon glyphicon-search' style = 'cursor: pointer;'></span></a>
+					</div>										
+				</div>				
+			</div>
+		</form>
+	
 
 	</div>
+	
 
 	<hr class = 'menuHr'>
 					
