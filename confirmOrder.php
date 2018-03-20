@@ -14,18 +14,27 @@
 				array_push($_SESSION['orders'], [$_GET['itemname'][$i], $_GET['quantity'][$i], $_GET['price'][$i]]); 	
 			}			
 			
-			// var_dump($_SESSION['orders']); 	
 			$_SESSION['tick'] = 1; 
 		}
-	}	
-	// var_dump($_SESSION['orders']); 
+	}
 
+
+	// Add orders to database
+	$s = sizeof($_SESSION['orders']);
+
+	for ($i=0; $i < $s; $i++) {
+		$name = $_SESSION['orders'][$i][0]; 
+		$query1 = 'MATCH (food:FOOD{name:"'.$name.'"}), (user:USER{name:"session'.$_SESSION['user_code'].'"}) CREATE UNIQUE (user)-[:ORDERED]->(food)'; 
+		$results1 = $client->run($query1); 	
+
+		
+	}
 
 ?>
 
 <div class="container-fluid">
 	<div class = 'menu-bar'>
-		<!-- <h3 class = 'padding pull-left'><span class = 'glyphicon glyphicon-saved'></span> Your order has been confirmed!</h3> -->
+		
 		<div class="panel panel-success">
 			<div class = 'panel-heading'>
 				<span class = 'fas fa-check-circle'></span> Your orders have been placed!
@@ -34,7 +43,6 @@
 	</div>
 	<h3>Invoice </h3>
 	<hr>		
-
 
 	<!-- Get form values -->
 	<table class="table table-hover">
@@ -82,7 +90,7 @@
 		
 			<h4>Follow us at:</h4>
 			<ul>
-				<li><i style = 'color:white' class = 'fab fa-facebook fa-2x'></i></li>				
+				<li><i style = 'color:white' class = 'fab fa-facebook fa-2x'></i></li>
 				<li><i style = 'color:white' class = 'fab fa-instagram fa-2x'></i></li>
 				<li><i style = 'color:white' class = 'fab fa-twitter fa-2x'></i></li>
 				<li><i style = 'color:white' class = 'fab fa-pinterest fa-2x'></i></li>					

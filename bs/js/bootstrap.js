@@ -2365,12 +2365,15 @@ if (typeof jQuery === 'undefined') {
   // ==============
 
   $(window).on('load', function () {
+    $('[data-toggle="popover"]').popover();   
     $("[data-toggle=tooltip]").tooltip();
     // $('.cart').notify("Window loaded", {autoHide: false, position: 'left middle' , className: 'success'}); 
     // Custom script    
 
     // Calculate total for existing orders
     gTotal(); 
+
+
 
     // When order button is clicked
     $('#orderTable').on('click', '#order', function() {
@@ -2440,7 +2443,10 @@ if (typeof jQuery === 'undefined') {
        }
     });
 
-
+    $('#formSubmit').on('click', function(event) {
+      $('#search').submit(); 
+      alert('ere');
+    });
 
 
     // End of Custom script

@@ -2,13 +2,19 @@
 	session_start();
 	require 'essentials.php'; 
 	ini_set('display_errors', 0); 
-	$query = "MATCH (n:FOOD) RETURN n"; 
+
+	if (isset($_POST['itemName'])) {
+		$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
+	}
+	else{
+		$query = "MATCH (n:FOOD) RETURN n"; 
+	}
+
 	$results = $client->run($query); 
 	$_SESSION['tick'] = 0; 
 ?>
 
 <div class="container-fluid">
-	
 
 	<!-- LOG OUT -->
 	<?php 
@@ -27,14 +33,28 @@
 	<div class = 'menu-bar'>
 		<h3 class = 'padding pull-left'>Menu</h3>
 
+		<!-- Logout -->
+		<h4 name = "logout" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Logout' onclick = "window.location = 'menu.php?confirm'" class="cart link"><span class = 'glyphicon glyphicon-log-out'></span></h4>
+
 		<!-- Cart modal -->
 		<h4 class = 'cart' data-toggle="modal" href='#modal-id'>
 			<span class = 'glyphicon glyphicon-shopping-cart'></span></h4>
 
-		<!-- Logout -->
-		<h4 name = "logout" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Logout' onclick = "window.location = 'menu.php?confirm'" class="cart link"><span class = 'glyphicon glyphicon-log-out'></span></h4>
-		</form>
-		
+		<!-- Search -->
+		<h4 class = "cart link" data-toggle="popover" data-html = "true" title="Search" data-placement = "bottom" data-content = '
+				<form id = "search" action = "" method = "POST">
+					<div class = "input-group">
+						<input name = "itemName" class = "form-control" type = "text">
+						<div class="input-group-addon">							
+							<button id = "searchBtn" style = "background-color:#eeeeee; border-color:#eeeeee;" type = "submit"><span class = "glyphicon glyphicon-search"></span></button>
+						</div>
+					</div>					
+				</form>
+				'
+			>
+			<span class = 'glyphicon glyphicon-search'></span>
+		</h4>		
+	
 
 		<div class="modal fade" id="modal-id">
 			<div class="modal-dialog">
@@ -89,7 +109,7 @@
 								
 							</table>
 							<hr>
-							Total (VAT incl.): $<span id = 'total_price'></span>
+							<h3>Total: $<span id = 'total_price'></span></h3>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
@@ -101,20 +121,14 @@
 		</div>
 
 		<!-- End of cart modal -->		
-		<form action="" method="POST" style = 'margin-top:10px;' class = 'padding pull-left' role="form">			
-		
-			<div class="form-group">
-				<div class="input-group col-xs-4">
-					<input type="text" class="form-control" placeholder="Search" id = 'search' name = 'search'>
-					<div class="input-group-addon">					
-						<a onclick = "$('#form').submit();" class='link'><span class = 'glyphicon glyphicon-search' style = 'cursor: pointer;'></span></a>
-					</div>										
-				</div>				
-			</div>
-		</form>
-	
-
 	</div>
+	<?php 
+		if (isset($_POST['itemName'])) {
+			echo "<h4 class = 'padding pull-left'>Showing related results for ('".$_POST['itemName']."')</h4>";		
+		}
+
+	?>
+	
 	
 
 	<hr class = 'menuHr'>

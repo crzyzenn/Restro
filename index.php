@@ -28,20 +28,29 @@
 					if(isset($_SESSION["user".$_POST['table_id']])){
 	 					echo "<span class = 'fas fa-sync-alt'></span> Continuing from last session.";
 	 					echo "<script>window.location='menu.php';</script>";
+
 	 				}
 	 				else{	 					
 	 					echo "<span class = 'fas fa-sync-alt'></span> Starting new session.";
 	 					$_SESSION["user".$_POST['table_id']] = "true"; 
+	 					$_SESSION["table"] = $_POST['table_id']; 
 	 					$_SESSION["orders"] = array(); 
 	 					$_SESSION['tick'] = 0;
- 						echo "<script>window.location='menu.php';</script>";
+
+	 					// Year, Month, Day, Hour, Minute
+	 					// Unique user code for each session
+	 					$_SESSION['user_code'] = date('y-m-d-h-i'); 	 					
+
+ 						// Create new session user in database
+ 						$query = 'CREATE (user:USER{name:"session'.$_SESSION['user_code'].'", table_id:'.$_POST['table_id'].'})'; 
+ 						$client->run($query); 
+
+ 						// Redirect to the restaurant menu
+ 						header("Location:menu.php");
 	 				} 						 		
 				}	 	
 			}
-
 		?>
-
-
 
 		<form action="index.php" method="POST" role="form">
 			

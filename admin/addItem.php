@@ -9,9 +9,12 @@
 		// When form data is sent
 		if(isset($_POST['add'])){			
 
-			$query = 'CREATE (n:FOOD{name:"'.$_POST['name'].'", description:"'.$_POST['description'].'", price:'.$_POST["price"].', category:"'.$_POST['category'].'"})';
+			$query = 'CREATE (n:FOOD{name:"'.$_POST['name'].'", description:"'.$_POST['description'].'", price:'.$_POST["price"].'})';
 			$result = $client->run($query); 
 
+			// Bind category on the newly added food
+			$query1 = 'MATCH (food:FOOD{name:"'.$_POST['name'].'"}), (category:CATEGORY{name:"'.$_POST['category'].'"}) CREATE UNIQUE (food)-[:HAS_CATEGORY]->(category)'; 
+			$result1 = $client->run($query1); 
 
 			$a = 1; 
 			while(($_FILES['myImage'.$a]['size'] != 0)){								
@@ -42,21 +45,11 @@
 			     	   $result = $client->run($query); 			     	   
 				    }
 				}
-			     
-				
+
 				// Increment a
 				$a++; 
-			}
-
-
-
-			// if($result){
-			// 	echo "<script>alert('Successfully added!')</script>"; 
-			// }			
+			}		
 		}
-
-
-
 	?>
 
 		<form action="addItem.php" method="POST" class = 'form-group' enctype = "multipart/form-data">			
