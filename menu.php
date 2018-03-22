@@ -1,10 +1,25 @@
-<?php 
-	session_start();
-	require 'essentials.php'; 
+<?php 	
+	require 'essentials.php';
+	if (!checkSession()) {
+		header('Location:index.php'); 
+	}
+	else{
+		loadLayout("Restro - Browse Menu", "Home");	
+	
+	
+
+	// Ignore errors
 	ini_set('display_errors', 0); 
 
 	if (isset($_POST['itemName'])) {
 		$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
+	}
+	else if(isset($_POST['category'])){
+		if ($_POST['category'] == 'all') {
+			$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
+		}
+		else
+			$query = "MATCH(n:FOOD)-[:HAS_CATEGORY]->(c) WHERE c.name = '".$_POST['category']."' RETURN n";
 	}
 	else{
 		$query = "MATCH (n:FOOD) RETURN n"; 
@@ -31,7 +46,7 @@
 
 
 	<div class = 'menu-bar'>
-		<h3 class = 'padding pull-left'>Menu</h3>
+		<h3 data-toggle = 'tooltip' data-placement = 'bottom' title = '' class = 'padding pull-left pointer' onclick = 'window.location = "menu.php";'>Menu</h3>
 
 		<!-- Logout -->
 		<h4 name = "logout" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Logout' onclick = "window.location = 'menu.php?confirm'" class="cart link"><span class = 'glyphicon glyphicon-log-out'></span></h4>
@@ -41,19 +56,39 @@
 			<span class = 'glyphicon glyphicon-shopping-cart'></span></h4>
 
 		<!-- Search -->
-		<h4 class = "cart link" data-toggle="popover" data-html = "true" title="Search" data-placement = "bottom" data-content = '
+		<h4 class = "cart link pointer" data-toggle="popover" data-html = "true" title="Search" data-placement = "bottom" data-content = '
 				<form id = "search" action = "" method = "POST">
 					<div class = "input-group">
 						<input name = "itemName" class = "form-control" type = "text">
 						<div class="input-group-addon">							
 							<button id = "searchBtn" style = "background-color:#eeeeee; border-color:#eeeeee;" type = "submit"><span class = "glyphicon glyphicon-search"></span></button>
-						</div>
-					</div>					
+						</div>						
+					</div>	
 				</form>
+				<form action = "" method = "POST">
+					<hr>
+					<p>Filter by</p>
+					<div class = "input-group-sm">
+						<select name="category" id="" class="form-control">
+							<option value = "all" selected>All</option>
+						<?php 
+							$res = $client->run("MATCH (n:CATEGORY) RETURN n.name as name");
+
+							foreach($res->getRecords() as $val){
+
+								echo "<option value = ".$val->value("name").">".$val->value("name")."</option>"; 
+							}
+						?>
+						</select>
+					</div>	
+					<br>
+					<button class = "btn btn-primary btn-sm" type = "submit">Filter <span class = "glyphicon glyphicon-filter"></span></button>
+				</form>				
+				
 				'
 			>
-			<span class = 'glyphicon glyphicon-search'></span>
-		</h4>		
+			<span class = 'glyphicon glyphicon-search'></span>			
+		</h4>			
 	
 
 		<div class="modal fade" id="modal-id">
@@ -125,6 +160,11 @@
 	<?php 
 		if (isset($_POST['itemName'])) {
 			echo "<h4 class = 'padding pull-left'>Showing related results for ('".$_POST['itemName']."')</h4>";		
+		}
+		else if (isset($_POST['category'])) {
+			if (!$_POST['category'] == 'all') {
+				echo "<h4 class = 'padding pull-left'>Sorting by ('".$_POST['category']."')</h4>";
+			}
 		}
 
 	?>
@@ -243,4 +283,6 @@
 	</div>
 
 </footer>
-
+<?php 
+	}
+?>

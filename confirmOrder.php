@@ -1,6 +1,11 @@
 <?php 
-	session_start();
 	require 'essentials.php'; 
+	if (!checkSession()) {
+		header('Location:index.php'); 
+	}
+	else{
+		loadLayout("Restro - Browse Menu", "Home");	
+
 	ini_set('display_errors', 0); 
 	$query = "MATCH (n:FOOD) RETURN n"; 
 	$results = $client->run($query); 
@@ -25,9 +30,7 @@
 	for ($i=0; $i < $s; $i++) {
 		$name = $_SESSION['orders'][$i][0]; 
 		$query1 = 'MATCH (food:FOOD{name:"'.$name.'"}), (user:USER{name:"session'.$_SESSION['user_code'].'"}) CREATE UNIQUE (user)-[:ORDERED]->(food)'; 
-		$results1 = $client->run($query1); 	
-
-		
+		$results1 = $client->run($query1); 
 	}
 
 ?>
@@ -101,4 +104,6 @@
 	</div>
 
 </footer>
-
+<?php 
+	}
+?>

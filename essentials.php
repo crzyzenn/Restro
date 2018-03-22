@@ -1,12 +1,14 @@
 <?php 
+	session_start();
 	require 'connect.php';
+	function loadLayout($title, $active = 'Home'){
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mobile test</title>
+	<title><?php echo $title; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Restaurant</title>
+	
 	<link rel = 'stylesheet' media="screen" href = 'bs/css/bootstrap.css'>
 
 	<script src="bs/js/jquery.js"></script>
@@ -30,12 +32,27 @@
 				</div>
 		
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					
+				<div class="collapse navbar-collapse navbar-ex1-collapse">					
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Contact Us</a></li>
+						<?php 
+							if ($active == 'Home') {
+								echo '<li class="active"><a href="#">Home</a></li>'; 
+								echo '<li><a href="#">About Us</a></li>'; 
+								echo '<li><a href="#">Contact Us</a></li>'; 
+							}
+							else if($active == 'About'){
+								echo '<li><a href="#">Home</a></li>'; 
+								echo '<li class="active"><a href="#">About Us</a></li>';
+								echo '<li><a href="#">Contact Us</a></li>';
+							}
+							else{
+								echo '<li><a href="#">Home</a></li>'; 
+								echo '<li><a href="#">About Us</a></li>';
+								echo '<li class="active"><a href="#">Contact Us</a></li>';	
+							}
+						?>
+						
+						
 					</ul>
 				
 					
@@ -43,3 +60,16 @@
 			</div>
 		</nav>		
 	</header>
+
+<?
+	}
+
+	function checkSession(){
+		if (isset($_SESSION['user_code'])) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+?>
