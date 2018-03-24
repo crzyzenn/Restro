@@ -37,10 +37,6 @@
 			session_destroy();
 			echo "<script>window.location = 'index.php';</script>";
 		}
-		else if(isset($_GET['confirm'])){
-			echo "<script>var a = confirm('Are you sure?'); if(a) window.location = 'menu.php?logout'</script>";
-		}
-
 	?>
 	<!-- END OF LOG OUT -->
 
@@ -48,8 +44,8 @@
 	<div class = 'menu-bar'>
 		<h3 data-toggle = 'tooltip' data-placement = 'bottom' title = '' class = 'padding pull-left pointer' onclick = 'window.location = "menu.php";'>Menu</h3>
 
-		<!-- Logout -->
-		<h4 name = "logout" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Logout' onclick = "window.location = 'menu.php?confirm'" class="cart link"><span class = 'glyphicon glyphicon-log-out'></span></h4>
+		<!-- Logout -->		
+		<h4 name = "logout" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Logout' onclick = "var a = confirm('Are you sure?'); if(a) window.location = 'menu.php?logout';" class="cart link"><span class = 'glyphicon glyphicon-log-out'></span></h4>
 
 		<!-- Cart modal -->
 		<h4 class = 'cart' data-toggle="modal" href='#modal-id'>
@@ -70,7 +66,7 @@
 					<p>Filter by</p>
 					<div class = "input-group-sm">
 						<select name="category" id="" class="form-control">
-							<option value = "all" selected>All</option>
+							<option value = "all" selected>View All</option>
 						<?php 
 							$res = $client->run("MATCH (n:CATEGORY) RETURN n.name as name");
 
@@ -162,7 +158,7 @@
 			echo "<h4 class = 'padding pull-left'>Showing related results for ('".$_POST['itemName']."')</h4>";		
 		}
 		else if (isset($_POST['category'])) {
-			if (!$_POST['category'] == 'all') {
+			if ($_POST['category'] != 'all') {
 				echo "<h4 class = 'padding pull-left'>Sorting by ('".$_POST['category']."')</h4>";
 			}
 		}

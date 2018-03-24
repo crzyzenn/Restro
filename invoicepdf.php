@@ -1,5 +1,6 @@
 <?php 
 	require 'vendor/autoload.php';
+	require 'connect.php';
 	session_start();
 	class PDF extends FPDF {
 		// Load data
@@ -104,6 +105,10 @@
 			// Closing line
 			$this->Cell(array_sum($w),0,'','T');
 		}
+
+		function loadtoDatabase(){
+			 
+		}
 	}
 
 	$pdf = new PDF();
@@ -128,10 +133,27 @@
 	$pdf->BasicTable($header,$_SESSION['orders']);
 	$pdf->SetFont('Arial', 'B', 15); 
 	$pdf->Cell(40,10,'Total (13% VAT) = $'. $total);
+
 	$pdf->Ln();
 	$pdf->Ln();
 	$pdf->Ln();
 	$pdf->Cell(0,5,iconv("UTF-8", "ISO-8859-1", "©").' All rights reserved.',0,1,'C',0);
 	$pdf->Output('Invoice.pdf','I');
+
+	
+	// Save invoice to local directory 
+	$pdf->Output('Invoices/Invoice-Session'.$_SESSION['user_code'].'.pdf', 'F');
+
+	// Link invoice to database
+	$query = "MATCH (user:USER{name:'session".$_SESSION['user_code']."'}) MERGE (user)-[:GENERATED_INVOICE]->(invoice:INVOICE{filename:'Invoice-Session".$_SESSION['user_code'].".pdf'})";
+	$client->run($query);
+
+
+
+	
+
+
+	
+
 
 ?>
