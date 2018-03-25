@@ -2364,8 +2364,20 @@ if (typeof jQuery === 'undefined') {
   // AFFIX DATA-API
   // ==============
 
+
+
+
   $(window).on('load', function () {
+
+
+   
+
+
+
+
     // Custom script  
+
+
 
     
     $('[data-toggle="popover"]').popover();   
@@ -2391,7 +2403,7 @@ if (typeof jQuery === 'undefined') {
 
 
     // When order button is clicked
-    $('#orderTable').on('click', '#order', function() {
+    $(document).on('click', '#order', function() {
         // Get values
         var itemName = $(this).closest('tr').contents().filter('td:first-child').contents().filter('#item').text();
         var itemPrice = $(this).closest('tr').contents().filter('td:nth-child(2)').text();

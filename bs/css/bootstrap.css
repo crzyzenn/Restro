@@ -162,8 +162,16 @@ li{
 
 /* Front end */
 
+.notification{
+  background-color: #7f3232;
+  padding: .5em 3em;
+  color: white;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
 .home_img{
-  width: 50%;
+  width: 20%;
   margin: 1em;
   padding-top: 2em;
 }
@@ -180,7 +188,7 @@ li{
     .home_img {
       position: relative;
       bottom: 4em;
-      width: 45%;
+      width: 40%;
       margin: 0em;
   }
 }
@@ -193,7 +201,7 @@ li{
     .home_img{
     position: relative;
     bottom: 2em;
-    width: 30%;
+    width: 65%;
     margin: 0em;
   }
 }
@@ -4544,7 +4552,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 12em;
-  margin-bottom: 2em;
+  margin-bottom: 0em;
   border: 1px solid transparent;
 }
 
@@ -4552,14 +4560,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar{
      position: relative;
      min-height: 10em;
-     margin-bottom: 2em;
+     margin-bottom: 0em;
      border: 1px solid transparent;
   }
 }
 
 @media (min-width: 768px) {
-  .navbar {   
-    border-radius: 4px;
+  .navbar {
   }
 }
 @media (min-width: 768px) {
@@ -4905,7 +4912,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #010101;
+  background-color: #000000;
   box-shadow: 0px -8px 20px 0px;
 }
 .navbar-default .navbar-brand {

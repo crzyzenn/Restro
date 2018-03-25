@@ -42,16 +42,17 @@
 	}
 
 ?>
-
-<div class="container-fluid">
-	<div class = 'menu-bar'>
-		
-		<div class="panel panel-success">
-			<div class = 'panel-heading'>
-				<span class = 'fas fa-check-circle'></span> Your orders have been placed!
-			</div>
-		</div>
+<div class="container" style = "
+    background-color: #3c763d;
+    padding: .5em 3em;
+    color: white;
+    margin-bottom: 1em;
+    width: 100%;">
+		<h4 class = 'text-center'><i class="glyphicon glyphicon-check"></i> Your order has been confirmed</h4>
+	
 	</div>
+<div class="container-fluid">
+
 	<h3>Invoice </h3>
 	<hr>		
 

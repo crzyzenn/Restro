@@ -53,12 +53,12 @@
 		?>
 
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" style = "margin-top: 2em;" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <!-- <li data-target="#myCarousel" data-slide-to="2"></li> -->
   </ol>
 
   <!-- Wrapper for slides -->
@@ -66,25 +66,25 @@
     <div class="item active">
       <img src="Images/1.jpg" alt="Los Angeles">
       <div class = 'carousel-caption'>
-      	<h3>Order in an interactive way</h3>
+      	
       </div>
     </div>
 
     <div class="item">
       <img src="Images/2.jpg" alt="Chicago">
       <div class = 'carousel-caption'>
-      	<h3>Get food recommendations</h3>	
+      	<!-- <h2>Get food recommendations</h2>	 -->
       </div>
       
     </div>
-
+<!-- 
     <div class="item">
-      <img src="Images/3.png" alt="New York">
+      <img src="Images/3.jpg" alt="New York">
       <div class = 'carousel-caption'>
-      	<h3>Get electronic invoices.</h3>	
+      	<h2>Access across all devices.</h2>	
       </div>
 
-    </div>
+    </div> -->
 
   </div>
 

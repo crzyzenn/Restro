@@ -5,29 +5,80 @@
 	}
 	else{
 		loadLayout("Restro - Browse Menu", "Home");	
+
 	
 	
 
 	// Ignore errors
 	ini_set('display_errors', 0); 
 
-	if (isset($_POST['itemName'])) {
-		$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
-	}
-	else if(isset($_POST['category'])){
-		if ($_POST['category'] == 'all') {
-			$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
-		}
-		else
-			$query = "MATCH(n:FOOD)-[:HAS_CATEGORY]->(c) WHERE c.name = '".$_POST['category']."' RETURN n";
-	}
-	else{
-		$query = "MATCH (n:FOOD) RETURN n"; 
-	}
-
+	// if (isset($_POST['itemName'])) {
+	// 	$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
+	// }
+	// else if(isset($_POST['category'])){
+	// 	if ($_POST['category'] == 'all') {
+	// 		$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
+	// 	}
+	// 	else
+	// 		$query = "MATCH(n:FOOD)-[:HAS_CATEGORY]->(c) WHERE c.name = '".$_POST['category']."' RETURN n";
+	// }
+	
+	$query = "MATCH (n:FOOD) RETURN n"; 
+	
 	$results = $client->run($query); 
 	$_SESSION['tick'] = 0; 
 ?>
+
+
+<script type="text/javascript">
+	// Ajax request for menu
+    function getData(itemName, category = false){
+      var xmlhttp = new XMLHttpRequest(); 
+      xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 & this.status == 200) {
+          $('#menuArea').html(this.responseText); 
+          // console.log(this.responseText);
+          console.log(itemName);
+        }
+      }; 
+
+
+      // If category part has been clicked
+      if (category) {
+      		xmlhttp.open("GET", "response.php?category="+itemName, true);
+      }
+
+      else{
+      	if (itemName != "all") {
+	      	xmlhttp.open("GET", "response.php?itemName="+itemName, true);
+      	}
+	    else{
+      		xmlhttp.open("GET", "response.php?all", true);
+ 	 	}	
+      }
+
+      
+      
+      xmlhttp.send(); 
+
+    }
+
+</script>
+
+
+	<div class="container" style = "
+	    background-color: #7f3232;
+	    padding: .5em 3em;
+	    color: white;
+	    margin-bottom: 1em;
+	    width: 100%;
+">
+		<h4 class = 'text-center'><i class="fas fa-coffee"></i>  Ordering from Table - <?php echo $_SESSION['table']; ?></h4>
+	
+	</div>
+
+
+
 
 <div class="container-fluid">
 
@@ -42,7 +93,7 @@
 
 
 	<div class = 'menu-bar'>
-		<h3 data-toggle = 'tooltip' data-placement = 'bottom' title = '' class = 'padding pull-left pointer' onclick = 'window.location = "menu.php";'>Menu</h3>
+		<h3 data-toggle = 'tooltip' data-placement = 'bottom' title = '' class = 'padding pull-left pointer' onclick = 'getData("all")'>Menu</h3>
 
 		<!-- Logout -->		
 		<h4 name = "logout" data-toggle = 'tooltip' data-placement = 'bottom' title = 'Logout' onclick = "var a = confirm('Are you sure?'); if(a) window.location = 'menu.php?logout';" class="cart link"><span class = 'glyphicon glyphicon-log-out'></span></h4>
@@ -53,20 +104,17 @@
 
 		<!-- Search -->
 		<h4 class = "cart link pointer" data-toggle="popover" data-html = "true" title="Search" data-placement = "bottom" data-content = '
-				<form id = "search" action = "" method = "POST">
+				
 					<div class = "input-group">
-						<input name = "itemName" class = "form-control" type = "text">
-						<div class="input-group-addon">							
-							<button id = "searchBtn" style = "background-color:#eeeeee; border-color:#eeeeee;" type = "submit"><span class = "glyphicon glyphicon-search"></span></button>
-						</div>						
+						<input name = "itemName" onkeyup = "getData(this.value);" class = "form-control" type = "text">
+						
 					</div>	
-				</form>
-				<form action = "" method = "POST">
+				
 					<hr>
 					<p>Filter by</p>
 					<div class = "input-group-sm">
-						<select name="category" id="" class="form-control">
-							<option value = "all" selected>View All</option>
+						<select onchange = "getData(this.value, true);" name="category" class="form-control">
+							<option  value = "" selected>Select category</option>
 						<?php 
 							$res = $client->run("MATCH (n:CATEGORY) RETURN n.name as name");
 
@@ -78,9 +126,6 @@
 						</select>
 					</div>	
 					<br>
-					<button class = "btn btn-primary btn-sm" type = "submit">Filter <span class = "glyphicon glyphicon-filter"></span></button>
-				</form>				
-				
 				'
 			>
 			<span class = 'glyphicon glyphicon-search'></span>			
@@ -169,9 +214,9 @@
 
 	<hr class = 'menuHr'>
 					
-	<div class="container custom pre-scrollable">					
-		
-				
+
+	<!-- Menu -->
+	<div class="container custom pre-scrollable" id = "menuArea">					
 		<table class="table table-hover menu" id = 'orderTable'>
 			<thead>
 				<tr>
@@ -259,8 +304,14 @@
 				?>					
 			</tbody>
 		</table>
+				
+		
 	</div>
 </div>
+
+<!-- End of menu -->
+
+
 <footer>
 	<div class="container-fluid">
 		

@@ -28,7 +28,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="link" href="index.php"><img src="Images/home.jpg" class = 'home_img'></a>
+					<a class="link" href="index.php"><img src="Images/home.png" class = 'home_img'></a>
 				</div>
 		
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,18 +36,18 @@
 					<ul class="nav navbar-nav navbar-right">
 						<?php 
 							if ($active == 'Home') {
-								echo '<li class="active"><a href="#">Home</a></li>'; 
-								echo '<li><a href="#">About Us</a></li>'; 
+								echo '<li class="active"><a href="index.php">Home</a></li>'; 
+								echo '<li><a href="about.php">About Us</a></li>'; 
 								echo '<li><a href="#">Contact Us</a></li>'; 
 							}
 							else if($active == 'About'){
-								echo '<li><a href="#">Home</a></li>'; 
-								echo '<li class="active"><a href="#">About Us</a></li>';
+								echo '<li><a href="index.php">Home</a></li>'; 
+								echo '<li class="active"><a href="about.php">About Us</a></li>';
 								echo '<li><a href="#">Contact Us</a></li>';
 							}
 							else{
-								echo '<li><a href="#">Home</a></li>'; 
-								echo '<li><a href="#">About Us</a></li>';
+								echo '<li><a href="index.php">Home</a></li>'; 
+								echo '<li><a href="about.php">About Us</a></li>';
 								echo '<li class="active"><a href="#">Contact Us</a></li>';	
 							}
 						?>
