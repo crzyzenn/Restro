@@ -8,13 +8,18 @@
 
 		// When form data is sent
 		if(isset($_POST['add'])){			
-
-			$query = "CREATE (n:TABLE{id:".$_POST['id'].", floor:".$_POST['floor']."})";
-			$result = $client->run($query); 
-			
-			if($result){
-				echo "<script>alert('Table added')</script>";
+			try{
+				$query = "CREATE (n:TABLE{id:'".$_POST['id']."', floor:".$_POST['floor']."})";
+				$result = $client->run($query); 
+				
+				if($result){
+					header('Location:tableopen.php?added');		
+				}	
 			}
+			catch(Exception $e){
+				header('Location:tableopen.php?error');	
+			}
+			
 		}
 
 

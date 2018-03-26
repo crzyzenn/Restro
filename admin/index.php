@@ -1,5 +1,6 @@
 <?php 
 	require 'essentials.php'; 
+	loadLayout("Restro | Admin - Home", "Home");
 ?>
 	<div id = 'right-container'>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

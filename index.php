@@ -9,7 +9,7 @@
 		<?php 
 			// Front end check table id
 			if (isset($_POST['table_id'])) {
-				$query = "MATCH (n:TABLE) WHERE n.id = ".$_POST['table_id']." RETURN n.id";
+				$query = "MATCH (n:TABLE) WHERE n.id = '".$_POST['table_id']."' RETURN n.id";
 				$results = $client->run($query); 
 
 				// If table id not valid
@@ -42,7 +42,7 @@
 	 					$_SESSION['user_code'] = date('y-m-d-h-i-s'); 	 					
 
  						// Create new session user in database
- 						$query = 'CREATE (user:USER{name:"session'.$_SESSION['user_code'].'", table_id:'.$_POST['table_id'].'})'; 
+ 						$query = 'MATCH (table:TABLE{id:"'.$_POST['table_id'].'"}) CREATE UNIQUE (user:USER{name:"session'.$_SESSION['user_code'].'"})-[:FROM_TABLE]->(table)'; 
  						$client->run($query); 
 
  						// Redirect to the restaurant menu

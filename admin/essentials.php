@@ -7,13 +7,13 @@
 	$client = ClientBuilder::create()
 		    ->addConnection('bolt', 'bolt://neo4j:root@localhost:7687')
 		    ->build();
-
+	function loadLayout($title, $active = 'Home'){
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Restaurant</title>
+	<title><?php echo $title; ?></title>
 	<link rel = 'stylesheet' media="screen" href = '../bs/css/bootstrap.css'>
 	<script src="../bs/js/jquery.js"></script>
 	<script type="text/javascript" src = '../bs/js/bootstrap.js'></script>	
@@ -65,37 +65,37 @@
 	<div id = 'left-container'>		
 		<ul class="myNav">
 			<?php 
-				if(isset($_GET['a'])){
-					echo "<a class = 'myLink' href='index.php?a'><li class = 'active'>Dashboard</li></a>"; 	
-					echo "<a class = 'myLink' href='menuopen.php?b'><li>Menu Management</li></a>";
-					echo "<a class = 'myLink' href='tableopen.php?c'><li>Table Management</li></a>"; 	
+				if($active == 'Home'){
+					echo "<a class = 'myLink' href='index.php'><li class = 'active'>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='menuopen.php'><li>Menu Management</li></a>";
+					echo "<a class = 'myLink' href='tableopen.php'><li>Table Management</li></a>"; 	
 					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";							
 				}
 
-				else if(isset($_GET['b'])){
-					echo "<a class = 'myLink' href='index.php?a'><li>Dashboard</li></a>"; 	
-					echo "<a class = 'myLink' href='menuopen.php?b'><li class = 'active'>Menu Management</li></a>"; 	
-					echo "<a class = 'myLink' href='tableopen.php?c'><li>Table Management</li></a>"; 
+				else if($active == 'Menu'){
+					echo "<a class = 'myLink' href='index.php'><li>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='menuopen.php'><li class = 'active'>Menu Management</li></a>"; 	
+					echo "<a class = 'myLink' href='tableopen.php'><li>Table Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";			
 				}
 
-				else if(isset($_GET['c'])){
-					echo "<a class = 'myLink' href='index.php?a'><li>Dashboard</li></a>"; 	
-					echo "<a class = 'myLink' href='menuopen.php?b'><li>Menu Management</li></a>"; 	
-					echo "<a class = 'myLink' href='tableopen.php?c'><li class = 'active'>Table Management</li></a>"; 
+				else if($active == 'Table'){
+					echo "<a class = 'myLink' href='index.php'><li>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='menuopen.php'><li>Menu Management</li></a>"; 	
+					echo "<a class = 'myLink' href='tableopen.php'><li class = 'active'>Table Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";			
 				}
 
 				else{
-					echo "<a class = 'myLink' href='index.php?a'><li class = 'active'>Dashboard</li></a>"; 	
-					echo "<a class = 'myLink' href='menuopen.php?b'><li>Menu Management</li></a>"; 
-					echo "<a class = 'myLink' href='tableopen.php?c'><li>Table Management</li></a>"; 
+					echo "<a class = 'myLink' href='index.php'><li class = 'active'>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='menuopen.php'><li>Menu Management</li></a>"; 
+					echo "<a class = 'myLink' href='tableopen.php'><li>Table Management</li></a>"; 
 
 					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
 					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
@@ -106,3 +106,8 @@
 			
 		</ul>				
 	</div>
+
+<?
+
+}
+?>

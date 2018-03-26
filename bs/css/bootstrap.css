@@ -1490,8 +1490,8 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+  outline: 0px;
+  /* outline-offset: -10px; */
 }
 figure {
   margin: 0;
@@ -3414,8 +3414,8 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+  outline: 0px;
+
 }
 .btn:hover,
 .btn:focus,
