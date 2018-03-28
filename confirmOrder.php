@@ -37,7 +37,7 @@
 		$name = $_SESSION['orders'][$i][0]; 
 		$quantity = $_SESSION['orders'][$i][1]; 
 		$price = $_SESSION['orders'][$i][2];
-		$query1 = 'MATCH (food:FOOD{name:"'.$name.'"}), (user:USER{name:"session'.$_SESSION['user_code'].'"}) CREATE UNIQUE (user)-[:ORDERED{quantity:'.$quantity.', price: '.$price.'}]->(food)'; 
+		$query1 = 'MATCH (food:FOOD{name:"'.$name.'"}), (user:USER{name:"session'.$_SESSION['user_code'].'"}) CREATE UNIQUE (user)-[:ORDERED{quantity:'.$quantity.', price: '.$price.', orderStatus: "NA"}]->(food)'; 
 		$results1 = $client->run($query1); 
 	}
 

@@ -162,6 +162,18 @@ li{
 
 /* Front end */
 
+/* Kitchen CSS */
+  .partition{
+    width: 30%; 
+    background-color: black; 
+    color: white; 
+    padding: 1em;
+    margin: 1em;
+    float: left;
+  }
+
+/* End of Kitchen CSS */
+
 .notification{
   background-color: #7f3232;
   padding: .5em 3em;

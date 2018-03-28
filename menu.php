@@ -38,7 +38,7 @@
         if (this.readyState == 4 & this.status == 200) {
           $('#menuArea').html(this.responseText); 
           // console.log(this.responseText);
-          console.log(itemName);
+          // console.log(itemName);
         }
       }; 
 
