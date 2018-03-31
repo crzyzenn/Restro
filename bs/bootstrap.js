@@ -2403,8 +2403,7 @@ if (typeof jQuery === 'undefined') {
 
 
     // When order button is clicked
-    $(document).on('click', '#order', function() { 
-
+    $(document).on('click', '#order', function() {
         // Get values
         var itemName = $(this).closest('tr').contents().filter('td:first-child').contents().filter('#item').text();
         var itemPrice = $(this).closest('tr').contents().filter('td:nth-child(2)').text();
@@ -2417,7 +2416,7 @@ if (typeof jQuery === 'undefined') {
           alert('Quantity should be a number');           
         }
 
-        else {   
+        else {          
           // Add them to the modal
           var elem = "<tr><td>" + itemName + "</td><td>" + confirmStatus + "</td><td>" + (price * confirmStatus) + "</td><td><a class = 'link'  id = 'removeOrder'><span style = 'cursor:pointer;' class = 'glyphicon glyphicon-minus-sign'></span></a></td><input type = 'hidden' name = 'price[]' value = '" + (price * confirmStatus) + "'><input type = 'hidden' name = 'quantity[]' value = '" + confirmStatus + "'><input type = 'hidden' name = 'itemname[]' value = '" + itemName + "'></tr>";
           $('#cart').append(elem);  
@@ -2430,27 +2429,8 @@ if (typeof jQuery === 'undefined') {
 
           // Calculate total price
           gTotal(); 
-
-          
-          // Recommendation
-           $.ajax({
-              type: 'POST',
-              // make sure you respect the same origin policy with this url:
-              // http://en.wikipedia.org/wiki/Same_origin_policy
-              url: 'recommendations.php',
-              data: { 
-                  'itemName': itemName 
-                  
-              },
-              success: function(msg){
-                  $('#rTitle').text('People who ordered "' + itemName + '" also ordered:');
-                  $('#recommendedList').html(msg); 
-              }
-          }); 
         }
     });
-
-
 
     function gTotal(){
       var total = 0;

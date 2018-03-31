@@ -1,8 +1,11 @@
 <?php 	
 	require "essentials.php";
-	loadLayout("Restro - Home") 	
-?>
+	loadLayout("Restro - Home"); 	
 
+	// Today's date
+	$date =  date('Y-M-d');
+
+?>	
 	<!-- Form table number -->
 	<div class="container-fluid">
 
@@ -42,7 +45,7 @@
 	 					$_SESSION['user_code'] = date('y-m-d-h-i-s'); 	 					
 
  						// Create new session user in database
- 						$query = 'MATCH (table:TABLE{id:"'.$_POST['table_id'].'"}) CREATE UNIQUE (user:USER{name:"session'.$_SESSION['user_code'].'"})-[:FROM_TABLE]->(table)'; 
+ 						$query = 'MATCH (table:TABLE{id:"'.$_POST['table_id'].'"}) CREATE UNIQUE (user:USER{name:"session'.$_SESSION['user_code'].'"})-[:FROM_TABLE{date:"'.$date.'"}]->(table)'; 
  						$client->run($query); 
 
  						// Redirect to the restaurant menu
@@ -144,7 +147,7 @@
 
 		<!-- Table entering menu -->
 		<div style = "margin: 0 auto; width: fit-content;">
-			<h4 class="btn btn-primary btn pointer" data-toggle="modal" href='#modal-id'>Start Ordering <i class="fas fa-utensils"></i></h4>
+			<h4 class="btn btn-primary btn-lg pointer" data-toggle="modal" href='#modal-id'>Start Ordering <i class="fas fa-utensils"></i></h4>
 			<div class="modal fade" id="modal-id">
 				<div class="modal-dialog">
 					<div class="modal-content">

@@ -7,38 +7,27 @@
 		loadLayout("Restro - Browse Menu", "Home");	
 
 	
-	
 
 	// Ignore errors
 	ini_set('display_errors', 0); 
 
-	// if (isset($_POST['itemName'])) {
-	// 	$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
-	// }
-	// else if(isset($_POST['category'])){
-	// 	if ($_POST['category'] == 'all') {
-	// 		$query = "MATCH (n:FOOD) WHERE toLower(n.name) CONTAINS toLower('".$_POST['itemName']."') RETURN n"; 		
-	// 	}
-	// 	else
-	// 		$query = "MATCH(n:FOOD)-[:HAS_CATEGORY]->(c) WHERE c.name = '".$_POST['category']."' RETURN n";
-	// }
-	
+
+	// Get the list of all foods available from the database
 	$query = "MATCH (n:FOOD) RETURN n"; 
-	
-	$results = $client->run($query); 
+	$results = $client->run($query);
+
+
 	$_SESSION['tick'] = 0; 
 ?>
 
 
 <script type="text/javascript">
-	// Ajax request for menu
+	// Ajax request for menu	
     function getData(itemName, category = false){
       var xmlhttp = new XMLHttpRequest(); 
       xmlhttp.onreadystatechange = function(){
         if (this.readyState == 4 & this.status == 200) {
-          $('#menuArea').html(this.responseText); 
-          // console.log(this.responseText);
-          // console.log(itemName);
+          $('#menuArea').html(this.responseText);           
         }
       }; 
 
@@ -130,8 +119,10 @@
 			>
 			<span class = 'glyphicon glyphicon-search'></span>			
 		</h4>			
-	
+		<!-- End of search -->
 
+
+		<!-- Cart -->
 		<div class="modal fade" id="modal-id">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -195,9 +186,11 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- End of cart modal -->		
+		<!-- End of cart modal -->				
 	</div>
+	<!-- End of menu bar -->
+
+
 	<?php 
 		if (isset($_POST['itemName'])) {
 			echo "<h4 class = 'padding pull-left'>Showing related results for ('".$_POST['itemName']."')</h4>";		
@@ -213,7 +206,18 @@
 	
 
 	<hr class = 'menuHr'>
-					
+	
+	<!-- Recommended List -->
+	<div class="container custom pre-scrollable">
+		<h2 id = 'rTitle'>Your recommendations</h2>
+		<div id = 'recommendedList'>
+			<h4>Nothing to recommend :(</h4>
+		</div>
+	</div>
+	<!-- End of recommended list -->
+
+
+
 
 	<!-- Menu -->
 	<div class="container custom pre-scrollable" id = "menuArea">					

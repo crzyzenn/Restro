@@ -7,12 +7,8 @@
 	$client = ClientBuilder::create()
 		    ->addConnection('bolt', 'bolt://neo4j:root@localhost:7687')
 		    ->build();
-
-
-
-	
 		    
-	// function loadLayout($title, $active = 'Home'){
+	
 ?>
 
 
