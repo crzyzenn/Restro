@@ -45,20 +45,21 @@
 
 	</script>
 </head>
+<header>
+	<div id = 'bar'>
+		<img src="../Images/home.png" style = 'width:10%;'>						
+		
+
+		<div id = 'logStatus'>
+			Admin
+			<a href = "loginResponse.php?logout" class = 'gray' data-toggle = 'tooltip' data-placement = 'bottom' title = 'Log-out'><span class = 'glyphicon glyphicon-log-out'></span></a>
+		</div>			
+		
+
+	</div>		
+</header>
 <body>		
-	<header>
-		<div id = 'bar'>
-			<img src="../Images/home.jpg" style = 'width:10%;'>						
-			
-
-			<div id = 'logStatus'>
-				Admin
-				<a href = "#" class = 'gray' data-toggle = 'tooltip' data-placement = 'bottom' title = 'Log-out'><span class = 'glyphicon glyphicon-log-out'></span></a>
-			</div>			
-			
-
-		</div>		
-	</header>
+	
 
 	
 
@@ -66,40 +67,46 @@
 		<ul class="myNav">
 			<?php 
 				if($active == 'Home'){
-					echo "<a class = 'myLink' href='index.php'><li class = 'active'>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='dashboard.php'><li class = 'active'>Dashboard</li></a>"; 	
 					echo "<a class = 'myLink' href='menuopen.php'><li>Menu Management</li></a>";
 					echo "<a class = 'myLink' href='tableopen.php'><li>Table Management</li></a>"; 	
-					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";							
+					echo "<a class = 'myLink' href='category.php'><li>Category Management</li></a>";
+											
 				}
 
 				else if($active == 'Menu'){
-					echo "<a class = 'myLink' href='index.php'><li>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='dashboard.php'><li>Dashboard</li></a>"; 	
 					echo "<a class = 'myLink' href='menuopen.php'><li class = 'active'>Menu Management</li></a>"; 	
 					echo "<a class = 'myLink' href='tableopen.php'><li>Table Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";			
+					echo "<a class = 'myLink' href='category.php'><li>Category Management</li></a>";
+								
 				}
 
 				else if($active == 'Table'){
-					echo "<a class = 'myLink' href='index.php'><li>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='dashboard.php'><li>Dashboard</li></a>"; 	
 					echo "<a class = 'myLink' href='menuopen.php'><li>Menu Management</li></a>"; 	
-					echo "<a class = 'myLink' href='tableopen.php'><li class = 'active'>Table Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";			
+					echo "<a class = 'myLink' href='tableopen.php'><li class = 'active'>Table Management</li></a>";
+					echo "<a class = 'myLink' href='category.php'><li>Category Management</li></a>";
+
+							
+				}
+
+				else if($active == 'Category'){
+					echo "<a class = 'myLink' href='dashboard.php'><li>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='menuopen.php'><li>Menu Management</li></a>"; 	
+					echo "<a class = 'myLink' href='tableopen.php'><li>Table Management</li></a>";
+					echo "<a class = 'myLink' href='category.php'><li class = 'active'>Category Management</li></a>";
+
+							
 				}
 
 				else{
-					echo "<a class = 'myLink' href='index.php'><li class = 'active'>Dashboard</li></a>"; 	
+					echo "<a class = 'myLink' href='dashboard.php'><li class = 'active'>Dashboard</li></a>"; 	
 					echo "<a class = 'myLink' href='menuopen.php'><li>Menu Management</li></a>"; 
 					echo "<a class = 'myLink' href='tableopen.php'><li>Table Management</li></a>"; 
+					echo "<a class = 'myLink' href='category.php'><li>Category Management</li></a>";
 
-					echo "<a class = 'myLink' href='#'><li>Invoice Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Waitstaff Management</li></a>"; 
-					echo "<a class = 'myLink' href='#'><li>Kitchen Management</li></a>";			
+							
 				}
 			?>
 						

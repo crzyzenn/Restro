@@ -2369,16 +2369,7 @@ if (typeof jQuery === 'undefined') {
 
   $(window).on('load', function () {
 
-
-   
-
-
-
-
     // Custom script  
-
-
-
     
     $('[data-toggle="popover"]').popover();   
     $("[data-toggle=tooltip]").tooltip();
@@ -2408,8 +2399,10 @@ if (typeof jQuery === 'undefined') {
         // Get values
         var itemName = $(this).closest('tr').contents().filter('td:first-child').contents().filter('#item').text();
         var itemPrice = $(this).closest('tr').contents().filter('td:nth-child(2)').text();
-        var price = parseInt(itemPrice.substr(1));      
+        var price = itemPrice.substr(1);      
         var confirmStatus = prompt("Quantity", "1");
+        var totalPrice = (price * confirmStatus).toFixed(1); 
+        // console.log(price * confirmStatus);
 
         // Check whether input is float
         var decimal= /[A-Z|a-z|\W]/;  
@@ -2418,8 +2411,9 @@ if (typeof jQuery === 'undefined') {
         }
 
         else {   
+          console.log(price); 
           // Add them to the modal
-          var elem = "<tr><td>" + itemName + "</td><td>" + confirmStatus + "</td><td>" + (price * confirmStatus) + "</td><td><a class = 'link'  id = 'removeOrder'><span style = 'cursor:pointer;' class = 'glyphicon glyphicon-minus-sign'></span></a></td><input type = 'hidden' name = 'price[]' value = '" + (price * confirmStatus) + "'><input type = 'hidden' name = 'quantity[]' value = '" + confirmStatus + "'><input type = 'hidden' name = 'itemname[]' value = '" + itemName + "'></tr>";
+          var elem = "<tr><td>" + itemName + "</td><td>" + confirmStatus + "</td><td>" + totalPrice + "</td><td><a class = 'link'  id = 'removeOrder'><span style = 'cursor:pointer;' class = 'glyphicon glyphicon-minus-sign'></span></a></td><input type = 'hidden' name = 'price[]' value = '" + totalPrice + "'><input type = 'hidden' name = 'quantity[]' value = '" + confirmStatus + "'><input type = 'hidden' name = 'itemname[]' value = '" + itemName + "'></tr>";
           $('#cart').append(elem);  
 
 
@@ -2455,9 +2449,10 @@ if (typeof jQuery === 'undefined') {
     function gTotal(){
       var total = 0;
       $('#cart').contents().filter('tr').each(function(index) {
-        var thePrice = parseInt($(this).contents().filter('td:nth-child(3)').text()); 
+        var thePrice = parseFloat($(this).contents().filter('td:nth-child(3)').text()); 
         if (!isNaN(thePrice)) {
           total += thePrice;
+          console.log('total = ' + total); 
         }
 
         // Display the total price on the table

@@ -33,7 +33,7 @@
 
 #left-container{
   width: 20%;
-  background-color: #484847;
+  background-color: #000000;
   float: left;
   padding: 2em;
   margin-left: 1em;
@@ -46,7 +46,7 @@
 
 #right-container{
   width: 70%;
-  background-color: #484847;
+  background-color: #000000;
   float: left;
   margin-bottom: 2em;
   padding: 4%;

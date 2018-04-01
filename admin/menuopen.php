@@ -12,6 +12,10 @@
  		$resss = $client->run($que); 
  		echo "<script>$.notify('Item has been deleted', {autoHideDelay:2000, className:'success'})</script>"; 
  	}
+
+ 	if (isset($_GET['added'])) {
+ 		echo "<script>$.notify('Item has been added', {autoHideDelay:2000, className:'success'})</script>"; 	
+ 	}
 ?>
 
 
@@ -53,7 +57,7 @@
 									<tr>
 										<td>Item Description</td>
 										<td>
-											<textarea name="description" id="desc" class="form-control" rows="10" required="required"></textarea>					
+											<textarea name="description" id="desc" class="form-control" rows="10"></textarea>					
 										</td>					
 										<td></td>	
 									</tr>
@@ -75,7 +79,7 @@
 									<tr>
 										<td>Price</td>
 										<td>
-											<input type="number" name="price" id="price" class="form-control" value="" required="required" placeholder = "$" title="">
+											<input type="number" name="price" step="any" id="price" class="form-control" value="" required="required" placeholder = "$" title="">
 										</td>
 										<td></td>						
 									</tr>
@@ -172,7 +176,7 @@
 		<!-- Menu table -->
 		<div class="container-fluid">
 			
-			<table class="table table-condensed">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -236,7 +240,7 @@
 																	<tr>
 																		<td>Item Description</td>
 																		<td>
-																			<textarea name="description" id="desc" class="form-control" rows="10" required="required"><?php echo $result->value('description'); ?></textarea>					
+																			<textarea name="description" id="desc" class="form-control" rows="10"><?php echo $result->value('description'); ?></textarea>					
 																		</td>					
 																		<td></td>	
 																	</tr>
@@ -264,7 +268,7 @@
 																	<tr>
 																		<td>Price</td>
 																		<td>
-																			<input type="number" name="price" id="price" class="form-control" value="<?php echo $result->value('price'); ?>" required="required" placeholder = "$" title="">
+																			<input type="number" step = "any" name="price" id="price" class="form-control" value="<?php echo $result->value('price'); ?>" required="required" placeholder = "$" title="">
 																		</td>
 																		<td></td>						
 																	</tr>
